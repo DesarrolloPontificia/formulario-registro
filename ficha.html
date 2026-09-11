@@ -1,0 +1,56 @@
+        <!DOCTYPE html>
+          <html>
+          <head>
+            <style>
+              body { font-family: 'Helvetica', 'Arial', sans-serif; padding: 10px 30px; color: #333333; line-height: 1.6; }
+              .header { text-align: center; border-bottom: 3px solid #ae2d46; padding-bottom: 20px; }
+              .header img { max-width: 150px; margin-bottom: 15px; }
+              .header h1 { color: #ae2d46; margin: 0; font-size: 24px; text-transform: uppercase; }
+              .header p { margin: 5px 0 0; font-size: 14px; color: #666; }
+              .seccion {  }
+              .seccion h2 { background-color: #f0f1f5; padding: 10px 15px; font-size: 16px; color: #ae2d46; border-radius: 4px; margin-bottom: 15px; }
+              table { width: 100%; border-collapse: collapse; }
+              td { padding: 8px 5px; border-bottom: 1px solid #eeeeee; font-size: 14px; vertical-align: top; }
+              .label { font-weight: bold; width: 35%; color: #555; }
+              .highlight { color: #ae2d46; font-weight: bold; font-size: 16px; }
+              .footer { text-align: center; margin-top: 50px; font-size: 12px; color: #999; border-top: 1px solid #ddd; padding-top: 20px; }
+            </style>
+          </head>
+          <body>
+            <div class="header">
+              <img src="https://pontificia.edu.mx/wp-content/uploads/2026/08/programas-cursos-de-verano-2026-1.webp" alt="UPM Logo">
+              <h1>Ficha Oficial de Registro</h1>
+              <p>Identificador de Solicitud: <strong>${idRegistro}</strong></p>
+            </div>
+            
+            <div class="seccion">
+              <h2>Datos del Alumno</h2>
+              <table>
+                <tr><td class="label">Matrícula:</td><td>${matricula}</td></tr>
+                <tr><td class="label">Nombre Completo:</td><td>${nombre} ${apellidos}</td></tr>
+                <tr><td class="label">Correo Electrónico:</td><td>${correo}</td></tr>
+                <tr><td class="label">Teléfono:</td><td>${telefono}</td></tr>
+                <tr><td class="label">Último Grado:</td><td>${grado}</td></tr>
+              </table>
+            </div>
+
+            <div class="seccion">
+              <h2>Detalles del Programa y Pago</h2>
+              <table>
+                <tr><td class="label">Programa Seleccionado:</td><td><strong>${curso}</strong></td></tr>
+                <tr><td class="label">Modalidad:</td><td>${modalidad}</td></tr>
+                <tr><td class="label">Costo Base:</td><td>${costoBase}</td></tr>
+                <tr><td class="label">Descuento Asignado:</td><td>${descuento}</td></tr>
+                <tr><td class="label">Costo Final a Pagar:</td><td class="highlight">${costoFinal}</td></tr>
+                <tr><td colspan="2" style="border:0; height:10px;"></td></tr>
+                <tr><td class="label">Estatus de Ingreso:</td><td>${status}</td></tr>
+                <tr><td class="label">Asesor Asignado:</td><td>${asesorNom}</td></tr>
+                <tr><td class="label">Fecha de Envío:</td><td>${fecha}</td></tr>
+              </table>
+            </div>
+
+            <div class="footer">
+              Este documento es un comprobante interno generado automáticamente por el Sistema de Registro de Educación Continua de la Universidad Pontificia de México.
+            </div>
+          </body>
+          </html>
