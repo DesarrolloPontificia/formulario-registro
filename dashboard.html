@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Alumnos - Educación Continua UPM</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --upm-red: #ae2d46;
+        --upm-gold: #c39a5c;
+        --bg: #f4f7f6;
+        --text: #333;
+        --border: #ddd;
+      }
+      body {
+        font-family: "Open Sans", sans-serif;
+        padding: 20px;
+        background-color: var(--bg);
+        color: var(--text);
+        margin: 0;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid var(--upm-red);
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+      }
+      .header h1 {
+        color: var(--upm-red);
+        margin: 0;
+        font-size: 24px;
+      }
+
+      /* Toolbar de controles */
+      .toolbar {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+        background: #fff;
+        padding: 15px;
+        border-radius: 6px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+      .toolbar input,
+      .toolbar select {
+        padding: 10px;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        flex: 1;
+        min-width: 200px;
+        font-family: inherit;
+      }
+
+      /* Tabla */
+      .table-container {
+        background: #fff;
+        border-radius: 6px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        overflow-x: auto;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+      }
+      th {
+        background-color: var(--upm-red);
+        color: white;
+        padding: 12px 15px;
+        font-weight: 600;
+        font-size: 14px;
+      }
+      td {
+        padding: 12px 15px;
+        border-bottom: 1px solid var(--border);
+        font-size: 14px;
+        vertical-align: middle;
+      }
+      tr:hover {
+        background-color: #f9f9f9;
+      }
+
+      /* Semáforos y Badges */
+      .badge {
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: bold;
+        display: inline-block;
+      }
+      .badge-green {
+        background-color: #e3fbed;
+        color: #107c41;
+        border: 1px solid #107c41;
+      }
+      .badge-yellow {
+        background-color: #fff4ce;
+        color: #9a6a00;
+        border: 1px solid #9a6a00;
+      }
+      .badge-blue {
+        background-color: #e1f0fa;
+        color: #005a9e;
+        border: 1px solid #005a9e;
+      }
+
+      /* Botones */
+      .btn {
+        padding: 8px 12px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 12px;
+        transition: 0.2s;
+        text-decoration: none;
+        display: inline-block;
+      }
+      .btn-drive {
+        background-color: #ffbb24;
+        color: #333;
+      }
+      .btn-drive:hover {
+        background-color: #e5a720;
+      }
+      .btn-edit {
+        background-color: #e0e0e0;
+        color: #333;
+        margin-left: 5px;
+      }
+      .btn-edit:hover {
+        background-color: #ccc;
+      }
+      .btn-save {
+        background-color: var(--upm-red);
+        color: white;
+        padding: 10px 20px;
+        width: 100%;
+        font-size: 14px;
+      }
+
+      /* Loading */
+      .loading {
+        text-align: center;
+        font-style: italic;
+        color: #666;
+        padding: 30px;
+      }
+
+      /* Modal de Edición */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+      .modal {
+        background: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        width: 100%;
+        max-width: 400px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+      .modal h2 {
+        margin-top: 0;
+        color: var(--upm-red);
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 10px;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 600;
+        font-size: 13px;
+      }
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+      }
+      .close-btn {
+        background: none;
+        border: none;
+        color: #999;
+        float: right;
+        font-size: 20px;
+        cursor: pointer;
+        margin-top: -5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Monitor de Registros - Educación Continua</h1>
+      <span id="contador" class="badge badge-blue">Cargando...</span>
+    </div>
+
+    <!-- Buscador y Filtros -->
+    <div class="toolbar">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Buscar por nombre, ID o matrícula..."
+        onkeyup="filtrarTabla()"
+      />
+      <select id="filterStatus" onchange="filtrarTabla()">
+        <option value="ALL">Todos los estatus</option>
+        <option value="Nuevo Ingreso">Nuevo Ingreso</option>
+        <option value="Reinscripción">Reinscripción</option>
+      </select>
+      <select id="filterAsesor" onchange="filtrarTabla()">
+        <option value="ALL">Todos los asesores</option>
+        <option value="Nuevo Ingreso">Nuevo Ingreso</option>
+        <option value="Reinscripción">Reinscripción</option>
+      </select>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>ID Solicitud</th>
+            <th>Nombre del Alumno</th>
+            <th>Estado de Matrícula</th>
+            <th>Curso / Diplomado</th>
+            <th>Estatus</th>
+            <th>Fecha Registro</th>
+            <th>Asesor</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tabla-body">
+          <tr>
+            <td colspan="7" class="loading">
+              Sincronizando datos con Google Sheets...
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- MODAL DE EDICIÓN -->
+    <div id="editModal" class="modal-overlay">
+      <div class="modal">
+        <button class="close-btn" onclick="cerrarModal()">×</button>
+        <h2>Editar Registro</h2>
+        <form id="editForm" onsubmit="guardarEdicion(event)">
+          <input type="hidden" id="edit-id" />
+
+          <div class="form-group">
+            <label>Nombre del Alumno (Solo lectura)</label>
+            <input
+              type="text"
+              id="edit-nombre"
+              disabled
+              style="background: #f0f0f0"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Matrícula Oficial</label>
+            <input type="text" id="edit-matricula" required />
+          </div>
+
+          <div class="form-group">
+            <label>Estatus de Ingreso</label>
+            <select id="edit-status">
+              <option value="Nuevo Ingreso">Nuevo Ingreso</option>
+              <option value="Reinscripción">Reinscripción</option>
+            </select>
+          </div>
+
+          <button type="submit" id="btn-submit-edit" class="btn btn-save">
+            Guardar Cambios
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const API_URL =
+        "https://script.google.com/macros/s/AKfycbx5kiXQWfw-ASDFT4DeAxJQA6xcOvwxio_XyDQGw-_bgR5zRS-k7l416j7QQMd6Nv6MJA/exec";
+      let dataAlumnos = []; // Guardamos los datos globalmente para filtrar y editar
+
+      // 1. Cargar Datos
+      function cargarDatos() {
+        fetch(API_URL)
+          .then((res) => res.json())
+          .then((json) => {
+            if (json.status === "success") {
+              dataAlumnos = json.data;
+              renderizarTabla(dataAlumnos);
+            }
+          })
+          .catch((err) => {
+            document.getElementById("tabla-body").innerHTML =
+              `<tr><td colspan="7" class="loading" style="color:red;">Error de conexión.</td></tr>`;
+          });
+      }
+
+      // 2. Renderizar Tabla con Semáforos
+      function renderizarTabla(datos) {
+        const tbody = document.getElementById("tabla-body");
+        tbody.innerHTML = "";
+
+        document.getElementById("contador").innerText =
+          `Total registros: ${datos.length}`;
+
+        if (datos.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="7" class="loading">No se encontraron resultados.</td></tr>`;
+          return;
+        }
+
+        datos.forEach((alumno) => {
+          // SOLUCIÓN AL ERROR: Convertir siempre a String de forma segura
+          let matriculaStr = alumno.matricula
+            ? String(alumno.matricula).trim()
+            : "";
+
+          // Semáforo de Matrícula
+          let isMatriculado =
+            matriculaStr !== "" &&
+            matriculaStr.toLowerCase() !== "no matriculado";
+          let semaforoMatricula = isMatriculado
+            ? `<span class="badge badge-green">✓ ${matriculaStr}</span>`
+            : `<span class="badge badge-yellow">⚠ Pendiente / No matriculado</span>`;
+
+          // Botones de acción
+          let botonDrive = alumno.urlExpediente
+            ? `<a href="${alumno.urlExpediente}" target="_blank" class="btn btn-drive">Ver Expediente</a>`
+            : `<span style="color:#999; font-size:12px;">Procesando...</span>`;
+
+          let botonEditar = `<button class="btn btn-edit" onclick='abrirModal(${JSON.stringify(alumno)})'>Editar</button>`;
+
+          tbody.innerHTML += `
+          <tr>
+            <td style="color:#666; font-size:12px;">${alumno.idRegistro}</td>
+            <td><strong>${alumno.nombreCompleto}</strong></td>
+            <td>${semaforoMatricula}</td>
+            <td>${alumno.curso}</td>
+            <td>${alumno.status}</td>
+            <td style="color:#666; font-size:12px;">${alumno.fecha}</td>
+            <td>${alumno.asesor}</td>
+            <td>${botonDrive} ${botonEditar}</td>
+          </tr>
+        `;
+        });
+      }
+
+      // 3. Sistema de Búsqueda y Filtros
+      function filtrarTabla() {
+        const searchTxt = document
+          .getElementById("searchInput")
+          .value.toLowerCase();
+        const statusFiltro = document.getElementById("filterStatus").value;
+
+        let filtrados = dataAlumnos.filter((a) => {
+          // SOLUCIÓN AL ERROR: Convertir a String antes de buscar para evitar fallos con números
+          const nombreStr = a.nombreCompleto
+            ? String(a.nombreCompleto).toLowerCase()
+            : "";
+          const idStr = a.idRegistro ? String(a.idRegistro).toLowerCase() : "";
+          const matStr = a.matricula ? String(a.matricula).toLowerCase() : "";
+
+          const concuerdaTexto =
+            nombreStr.includes(searchTxt) ||
+            idStr.includes(searchTxt) ||
+            matStr.includes(searchTxt);
+          const concuerdaStatus =
+            statusFiltro === "ALL" || a.status === statusFiltro;
+
+          return concuerdaTexto && concuerdaStatus;
+        });
+
+        renderizarTabla(filtrados);
+      }
+
+      // 4. Lógica del Modal de Edición
+      function abrirModal(alumno) {
+        document.getElementById("edit-id").value = alumno.idRegistro;
+        document.getElementById("edit-nombre").value = alumno.nombreCompleto;
+
+        let matriculaStr = alumno.matricula
+          ? String(alumno.matricula).trim()
+          : "";
+        document.getElementById("edit-matricula").value =
+          matriculaStr.toLowerCase() === "no matriculado" ? "" : matriculaStr;
+
+        document.getElementById("edit-status").value = alumno.status;
+
+        document.getElementById("editModal").style.display = "flex";
+      }
+
+      function cerrarModal() {
+        document.getElementById("editModal").style.display = "none";
+      }
+
+      // 5. Guardar Edición (Envío al Backend)
+      function guardarEdicion(e) {
+        e.preventDefault();
+        const btn = document.getElementById("btn-submit-edit");
+        btn.innerText = "Guardando...";
+        btn.disabled = true;
+
+        const payload = {
+          action: "update",
+          idRegistro: document.getElementById("edit-id").value,
+          matricula:
+            document.getElementById("edit-matricula").value || "No Matriculado",
+          status: document.getElementById("edit-status").value,
+        };
+
+        fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload),
+        })
+          .then((res) => res.json())
+          .then((response) => {
+            if (response.status === "success") {
+              cerrarModal();
+              cargarDatos(); // Recargamos la tabla para ver los cambios
+            } else {
+              alert("Error al actualizar: " + response.message);
+            }
+          })
+          .catch((err) => {
+            alert("Ocurrió un error de red.");
+          })
+          .finally(() => {
+            btn.innerText = "Guardar Cambios";
+            btn.disabled = false;
+          });
+      }
+
+      // Iniciar
+      cargarDatos();
+    </script>
+  </body>
+</html>
