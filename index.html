@@ -7,7 +7,10 @@
     <title>Registro - Educación Continua UPM</title>
 
     <!-- Fuente institucional y sobria -->
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
       :root {
@@ -24,7 +27,7 @@
         background-color: var(--bg-color);
         color: var(--text-main);
         margin: 0;
-        padding: 40px 20px;
+        /* padding: 40px 20px; */
         line-height: 1.6;
       }
 
@@ -32,82 +35,225 @@
         max-width: 750px;
         margin: 0 auto;
         background-color: #ffffff;
-        padding: 50px 60px;
+        padding: 20px 20px;
         border-radius: 4px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         border-top: 5px solid var(--upm-red);
       }
 
-      header { text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color); }
-      .header-logo { max-width: 220px; height: auto; margin-bottom: 25px; }
-      h1 { font-family: "Merriweather", serif; color: var(--upm-red); font-size: 26px; margin: 0 0 10px; }
-      .subtitle { font-size: 15px; color: var(--text-muted); margin: 0; }
+      header {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--border-color);
+      }
+      .header-logo {
+        max-width: 220px;
+        height: auto;
+        margin-bottom: 25px;
+      }
+      h1 {
+        font-family: "Merriweather", serif;
+        color: var(--upm-red);
+        font-size: 26px;
+        margin: 0 0 10px;
+      }
+      .subtitle {
+        font-size: 15px;
+        color: var(--text-muted);
+        margin: 0;
+      }
 
-      .question-section { text-align: center; margin-bottom: 40px; }
-      .question-section h3 { font-size: 18px; font-weight: 600; margin-bottom: 20px; }
-      .button-group { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+      .question-section {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      .question-section h3 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+      .button-group {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
 
       .btn-outline {
-        padding: 12px 30px; font-size: 15px; font-weight: 600; background: transparent;
-        color: var(--text-main); border: 2px solid var(--border-color); border-radius: 4px;
-        cursor: pointer; transition: all 0.2s ease; font-family: inherit;
+        padding: 12px 30px;
+        font-size: 15px;
+        font-weight: 600;
+        background: transparent;
+        color: var(--text-main);
+        border: 2px solid var(--border-color);
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-family: inherit;
       }
-      .btn-outline:hover { border-color: var(--upm-red); color: var(--upm-red); }
-      .btn-outline.active { background-color: var(--upm-red); color: #ffffff; border-color: var(--upm-red); }
+      .btn-outline:hover {
+        border-color: var(--upm-red);
+        color: var(--upm-red);
+      }
+      .btn-outline.active {
+        background-color: var(--upm-red);
+        color: #ffffff;
+        border-color: var(--upm-red);
+      }
 
-      .form-wrapper { animation: fadeIn 0.5s ease; }
+      .form-wrapper {
+        animation: fadeIn 0.5s ease;
+      }
       .section-title {
-        font-family: "Merriweather", serif; color: var(--upm-red); font-size: 20px;
-        border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 25px; margin-top: 35px;
+        font-family: "Merriweather", serif;
+        color: var(--upm-red);
+        font-size: 20px;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 10px;
+        margin-bottom: 25px;
+        margin-top: 35px;
       }
 
-      .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-      .form-group { margin-bottom: 20px; }
-      .full-width { grid-column: 1 / -1; }
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      .full-width {
+        grid-column: 1 / -1;
+      }
 
       label {
-        display: block; margin-bottom: 8px; font-weight: 600; font-size: 13px;
-        color: var(--text-main); text-transform: uppercase; letter-spacing: 0.5px;
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        font-size: 13px;
+        color: var(--text-main);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
       }
 
-      input[type="text"], input[type="email"], select {
-        width: 100%; padding: 12px 15px; border: 1px solid var(--border-color);
-        border-radius: 4px; box-sizing: border-box; font-family: inherit; font-size: 14px;
-        background-color: #fcfcfc; transition: border 0.3s ease;
+      input[type="text"],
+      input[type="email"],
+      select {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid var(--border-color);
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-family: inherit;
+        font-size: 14px;
+        background-color: #fcfcfc;
+        transition: border 0.3s ease;
       }
-      input:focus, select:focus { outline: none; border-color: var(--upm-red); background-color: #fff; }
-      .field-required { color: var(--upm-red); }
+      input:focus,
+      select:focus {
+        outline: none;
+        border-color: var(--upm-red);
+        background-color: #fff;
+      }
+      .field-required {
+        color: var(--upm-red);
+      }
 
       .cotizacion-card {
-        background-color: #fafafb; border: 1px solid var(--border-color);
-        border-left: 4px solid var(--upm-red); padding: 20px; border-radius: 4px;
-        margin-top: 15px; display: none;
+        background-color: #fafafb;
+        border: 1px solid var(--border-color);
+        border-left: 4px solid var(--upm-red);
+        padding: 20px;
+        border-radius: 4px;
+        margin-top: 15px;
+        display: none;
       }
-      .cotizacion-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; }
-      .cotizacion-total { margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border-color); font-weight: 700; font-size: 18px; color: var(--upm-red); }
+      .cotizacion-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        font-size: 14px;
+      }
+      .cotizacion-total {
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid var(--border-color);
+        font-weight: 700;
+        font-size: 18px;
+        color: var(--upm-red);
+      }
 
       .btn-submit {
-        background-color: var(--upm-red); color: white; padding: 15px 30px; font-size: 16px;
-        font-weight: 600; border: none; border-radius: 4px; width: 100%; cursor: pointer;
-        margin-top: 30px; transition: background 0.3s ease;
+        background-color: var(--upm-red);
+        color: white;
+        padding: 15px 30px;
+        font-size: 16px;
+        font-weight: 600;
+        border: none;
+        border-radius: 4px;
+        width: 100%;
+        cursor: pointer;
+        margin-top: 30px;
+        transition: background 0.3s ease;
       }
-      .btn-submit:hover { background-color: #8c2335; }
+      .btn-submit:hover {
+        background-color: #8c2335;
+      }
 
       .overlay {
-        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(255, 255, 255, 0.9); z-index: 9999; display: none;
-        flex-direction: column; justify-content: center; align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.9);
+        z-index: 9999;
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
       }
       .spinner {
-        border: 4px solid rgba(174, 45, 70, 0.2); border-left-color: var(--upm-red);
-        border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin-bottom: 20px;
+        border: 4px solid rgba(174, 45, 70, 0.2);
+        border-left-color: var(--upm-red);
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+        margin-bottom: 20px;
       }
 
-      @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-      @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-      .hidden { display: none !important; }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .hidden {
+        display: none !important;
+      }
 
-      @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } .main-container { padding: 30px 20px; } }
+      @media (max-width: 600px) {
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+        .main-container {
+          padding: 30px 20px;
+        }
+      }
     </style>
   </head>
 
@@ -115,13 +261,25 @@
     <!-- MODAL DE CARGA -->
     <div id="loading-overlay" class="overlay">
       <div class="spinner"></div>
-      <h2 style="color: #ae2d46; margin: 0; font-family: 'Merriweather', serif;">Procesando Solicitud</h2>
+      <h2
+        style="
+          color: #ae2d46;
+          margin: 0;
+          font-family: &quot;Merriweather&quot;, serif;
+        "
+      >
+        Procesando Solicitud
+      </h2>
       <p style="color: #555">Por favor, no cierres esta ventana...</p>
     </div>
 
     <div class="main-container">
       <header>
-        <img src="https://pontificia.edu.mx/wp-content/uploads/2026/08/programas-cursos-de-verano-2026-1.webp" alt="Logo UPM" class="header-logo" />
+        <img
+          src="https://pontificia.edu.mx/wp-content/uploads/2026/08/programas-cursos-de-verano-2026-1.webp"
+          alt="Logo UPM"
+          class="header-logo"
+        />
         <h1>Educación Continua</h1>
         <p class="subtitle">Formulario Oficial de Registro Académico</p>
       </header>
@@ -129,16 +287,53 @@
       <div class="question-section" id="seccion-tipo-ingreso">
         <h3>Seleccione su tipo de ingreso:</h3>
         <div class="button-group">
-          <button type="button" id="btn-nuevo" class="btn-outline" onclick="mostrarFormulario('nuevo')">Nuevo Ingreso</button>
-          <button type="button" id="btn-reins" class="btn-outline" onclick="mostrarFormulario('reins')">Reinscripción</button>
+          <button
+            type="button"
+            id="btn-nuevo"
+            class="btn-outline"
+            onclick="mostrarFormulario('nuevo')"
+          >
+            Nuevo Ingreso
+          </button>
+          <button
+            type="button"
+            id="btn-reins"
+            class="btn-outline"
+            onclick="mostrarFormulario('reins')"
+          >
+            Reinscripción
+          </button>
         </div>
       </div>
 
       <!-- MENSAJE DE ÉXITO -->
-      <div id="mensaje-exito" class="hidden" style="text-align: center; padding: 40px 20px">
-        <svg style="width: 60px; height: 60px; color: #27ae60; margin-bottom: 20px" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-        <h2 style="color: #27ae60; font-family: 'Merriweather', serif;">¡Registro Exitoso!</h2>
-        <p>Hemos recibido tus datos correctamente. Se ha enviado un correo electrónico con tu identificador e instrucciones de pago.</p>
+      <div
+        id="mensaje-exito"
+        class="hidden"
+        style="text-align: center; padding: 40px 20px"
+      >
+        <svg
+          style="width: 60px; height: 60px; color: #27ae60; margin-bottom: 20px"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+          ></path>
+        </svg>
+        <h2
+          style="color: #27ae60; font-family: &quot;Merriweather&quot;, serif"
+        >
+          ¡Registro Exitoso!
+        </h2>
+        <p>
+          Hemos recibido tus datos correctamente. Se ha enviado un correo
+          electrónico con tu identificador e instrucciones de pago.
+        </p>
       </div>
 
       <!-- FORMULARIO -->
@@ -148,9 +343,18 @@
 
           <h2 class="section-title">I. Datos Personales</h2>
           <div class="form-grid">
-            <div class="form-group full-width" id="matricula-group" style="display: none">
+            <div
+              class="form-group full-width"
+              id="matricula-group"
+              style="display: none"
+            >
               <label>Matrícula UPM <span class="field-required">*</span></label>
-              <input type="text" id="matricula" name="matricula" placeholder="Ej. 20261020" />
+              <input
+                type="text"
+                id="matricula"
+                name="matricula"
+                placeholder="Ej. 20261020"
+              />
             </div>
             <div class="form-group">
               <label>Nombre(s) <span class="field-required">*</span></label>
@@ -161,18 +365,35 @@
               <input type="text" id="lastname" name="lastname" required />
             </div>
             <div class="form-group">
-              <label>Correo electrónico <span class="field-required">*</span></label>
+              <label
+                >Correo electrónico <span class="field-required">*</span></label
+              >
               <input type="email" id="correo" name="correo" required />
             </div>
             <div class="form-group">
-              <label>Teléfono (Móvil) <span class="field-required">*</span></label>
-              <input type="text" id="phone" name="phone" required placeholder="10 dígitos" />
+              <label
+                >Teléfono (Móvil) <span class="field-required">*</span></label
+              >
+              <input
+                type="text"
+                id="phone"
+                name="phone"
+                required
+                placeholder="10 dígitos"
+              />
             </div>
             <div class="form-group full-width">
-              <label>Último grado de estudios <span class="field-required">*</span></label>
+              <label
+                >Último grado de estudios
+                <span class="field-required">*</span></label
+              >
               <select id="grado_estudios" name="grado_estudios" required>
-                <option value="" disabled selected>Seleccione una opción...</option>
-                <option value="Preparatoria / Bachillerato">Preparatoria / Bachillerato</option>
+                <option value="" disabled selected>
+                  Seleccione una opción...
+                </option>
+                <option value="Preparatoria / Bachillerato">
+                  Preparatoria / Bachillerato
+                </option>
                 <option value="Licenciatura">Licenciatura</option>
                 <option value="Maestría">Maestría</option>
                 <option value="Doctorado">Doctorado</option>
@@ -183,16 +404,32 @@
 
           <h2 class="section-title">II. Detalles del Programa</h2>
           <div class="form-group">
-            <label>Programa de Interés <span class="field-required">*</span></label>
-            <select id="course" name="course" required onchange="actualizarModalidades()">
-              <option value="" disabled selected>Seleccione un curso o diplomado...</option>
+            <label
+              >Programa de Interés <span class="field-required">*</span></label
+            >
+            <select
+              id="course"
+              name="course"
+              required
+              onchange="actualizarModalidades()"
+            >
+              <option value="" disabled selected>
+                Seleccione un curso o diplomado...
+              </option>
             </select>
           </div>
-          
+
           <div class="form-group">
             <label>Modalidad <span class="field-required">*</span></label>
-            <select id="modalidad" name="modalidad" required onchange="actualizarCosto()">
-              <option value="" disabled selected>Seleccione primero un curso...</option>
+            <select
+              id="modalidad"
+              name="modalidad"
+              required
+              onchange="actualizarCosto()"
+            >
+              <option value="" disabled selected>
+                Seleccione primero un curso...
+              </option>
             </select>
           </div>
 
@@ -202,7 +439,11 @@
               <span style="color: #666">Costo Base:</span>
               <span id="display-base">--</span>
             </div>
-            <div class="cotizacion-row" id="row-descuento" style="color: #27ae60; display: none">
+            <div
+              class="cotizacion-row"
+              id="row-descuento"
+              style="color: #27ae60; display: none"
+            >
               <span>Descuento (<span id="display-porcentaje"></span>%):</span>
               <span id="display-ahorro">--</span>
             </div>
@@ -220,7 +461,9 @@
           <h2 class="section-title">III. Información Adicional</h2>
           <div class="form-grid">
             <div class="form-group">
-              <label>¿Requiere Factura? <span class="field-required">*</span></label>
+              <label
+                >¿Requiere Factura? <span class="field-required">*</span></label
+              >
               <select id="factura" name="factura" required>
                 <option value="" disabled selected>Seleccione...</option>
                 <option value="Sí">Sí</option>
@@ -228,10 +471,15 @@
               </select>
             </div>
             <div class="form-group">
-              <label>¿Cómo se enteró de nosotros? <span class="field-required">*</span></label>
+              <label
+                >¿Cómo se enteró de nosotros?
+                <span class="field-required">*</span></label
+              >
               <select id="medio" name="medio" required>
                 <option value="" disabled selected>Seleccione...</option>
-                <option value="Redes Sociales (Facebook/Instagram)">Redes Sociales</option>
+                <option value="Redes Sociales (Facebook/Instagram)">
+                  Redes Sociales
+                </option>
                 <option value="Sitio Web UPM">Sitio Web UPM</option>
                 <option value="Correo Electrónico">Correo Electrónico</option>
                 <option value="Recomendación">Recomendación</option>
@@ -241,41 +489,56 @@
           </div>
 
           <div class="form-group" style="margin-top: 20px">
-            <label style="font-weight: normal; font-size: 13px; display: flex; align-items: start; gap: 10px;">
+            <label
+              style="
+                font-weight: normal;
+                font-size: 13px;
+                display: flex;
+                align-items: start;
+                gap: 10px;
+              "
+            >
               <input type="checkbox" required style="margin-top: 3px" />
-              <span>He leído y acepto el tratamiento de mis datos personales conforme al Aviso de Privacidad de la Universidad Pontificia de México.</span>
+              <span
+                >He leído y acepto el tratamiento de mis datos personales
+                conforme al Aviso de Privacidad de la Universidad Pontificia de
+                México.</span
+              >
             </label>
           </div>
 
-          <button type="submit" class="btn-submit">Confirmar Registro y Recibir Formas de Pago</button>
+          <button type="submit" class="btn-submit">
+            Confirmar Registro y Recibir Formas de Pago
+          </button>
         </form>
       </div>
     </div>
 
     <script>
       const ENV_CONFIG = {
-        SCRIPT_URL: "https://script.google.com/macros/s/AKfycbx5kiXQWfw-ASDFT4DeAxJQA6xcOvwxio_XyDQGw-_bgR5zRS-k7l416j7QQMd6Nv6MJA/exec"
+        SCRIPT_URL:
+          "https://script.google.com/macros/s/AKfycbx5kiXQWfw-ASDFT4DeAxJQA6xcOvwxio_XyDQGw-_bgR5zRS-k7l416j7QQMd6Nv6MJA/exec",
       };
 
       // ⚠️ Modificación importante: modalidades es ahora un ARREGLO de textos
       const catalogoCursos = {
         "Introductorio en teología bíblica": {
-          costoBase: 1500.00,
+          costoBase: 1500.0,
           descuentoPorcentaje: 10,
           fecha_inicio_descuento: "2026-09-01",
           fecha_fin_descuento: "2026-09-30",
-          modalidades: ["Virtual", "Presencial", "Sincrónica"] 
+          modalidades: ["Virtual", "Presencial", "Sincrónica"],
         },
         "Fundamentos de la Teología": {
-          costoBase: 2200.00,
+          costoBase: 2200.0,
           descuentoPorcentaje: 10,
           fecha_inicio_descuento: "2026-10-01",
           fecha_fin_descuento: "2026-10-15",
-          modalidades: ["Presencial"]
-        }
+          modalidades: ["Presencial"],
+        },
       };
 
-      window.onload = function() {
+      window.onload = function () {
         const selectCurso = document.getElementById("course");
         for (let nombreCurso in catalogoCursos) {
           let option = document.createElement("option");
@@ -291,7 +554,7 @@
         const btnReins = document.getElementById("btn-reins");
         const divMatricula = document.getElementById("matricula-group");
         const inputMatricula = document.getElementById("matricula");
-        
+
         btnNuevo.classList.remove("active");
         btnReins.classList.remove("active");
 
@@ -311,12 +574,13 @@
       function actualizarModalidades() {
         const cursoNombre = document.getElementById("course").value;
         const selectMod = document.getElementById("modalidad");
-        
-        selectMod.innerHTML = '<option value="" disabled selected>Seleccione modalidad...</option>';
+
+        selectMod.innerHTML =
+          '<option value="" disabled selected>Seleccione modalidad...</option>';
         document.getElementById("cotizacion-container").style.display = "none";
-        
-        if(catalogoCursos[cursoNombre]) {
-          catalogoCursos[cursoNombre].modalidades.forEach(mod => {
+
+        if (catalogoCursos[cursoNombre]) {
+          catalogoCursos[cursoNombre].modalidades.forEach((mod) => {
             let option = document.createElement("option");
             option.value = mod;
             option.textContent = mod;
@@ -325,7 +589,10 @@
         }
       }
 
-      const formatoMoneda = new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' });
+      const formatoMoneda = new Intl.NumberFormat("es-MX", {
+        style: "currency",
+        currency: "MXN",
+      });
 
       function actualizarCosto() {
         const cursoNombre = document.getElementById("course").value;
@@ -340,73 +607,93 @@
         let cantidadAhorrada = 0;
 
         const hoy = new Date();
-        const fechaInicio = new Date(curso.fecha_inicio_descuento + "T00:00:00");
+        const fechaInicio = new Date(
+          curso.fecha_inicio_descuento + "T00:00:00",
+        );
         const fechaFin = new Date(curso.fecha_fin_descuento + "T23:59:59");
 
         if (hoy >= fechaInicio && hoy <= fechaFin) {
           tieneDescuento = true;
-          cantidadAhorrada = curso.costoBase * (curso.descuentoPorcentaje / 100);
+          cantidadAhorrada =
+            curso.costoBase * (curso.descuentoPorcentaje / 100);
           costoFinal = curso.costoBase - cantidadAhorrada;
         }
 
-        document.getElementById("display-base").textContent = formatoMoneda.format(curso.costoBase);
-        document.getElementById("display-total").textContent = formatoMoneda.format(costoFinal);
+        document.getElementById("display-base").textContent =
+          formatoMoneda.format(curso.costoBase);
+        document.getElementById("display-total").textContent =
+          formatoMoneda.format(costoFinal);
 
         const rowDescuento = document.getElementById("row-descuento");
         if (tieneDescuento) {
-          document.getElementById("display-porcentaje").textContent = curso.descuentoPorcentaje;
-          document.getElementById("display-ahorro").textContent = "-" + formatoMoneda.format(cantidadAhorrada);
+          document.getElementById("display-porcentaje").textContent =
+            curso.descuentoPorcentaje;
+          document.getElementById("display-ahorro").textContent =
+            "-" + formatoMoneda.format(cantidadAhorrada);
           rowDescuento.style.display = "flex";
         } else {
           rowDescuento.style.display = "none";
         }
 
         // Se guardan formateados para que pasen bonito al Google Sheets
-        document.getElementById("hidden_costoBase").value = formatoMoneda.format(curso.costoBase);
-        document.getElementById("hidden_descuento").value = tieneDescuento ? curso.descuentoPorcentaje + "%" : "0%";
-        document.getElementById("hidden_costoFinal").value = formatoMoneda.format(costoFinal);
+        document.getElementById("hidden_costoBase").value =
+          formatoMoneda.format(curso.costoBase);
+        document.getElementById("hidden_descuento").value = tieneDescuento
+          ? curso.descuentoPorcentaje + "%"
+          : "0%";
+        document.getElementById("hidden_costoFinal").value =
+          formatoMoneda.format(costoFinal);
 
         contenedor.style.display = "block";
       }
 
-      document.getElementById("registroForm").addEventListener("submit", function (e) {
-        e.preventDefault();
-        document.getElementById("loading-overlay").style.display = "flex";
+      document
+        .getElementById("registroForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          document.getElementById("loading-overlay").style.display = "flex";
 
-        const formData = {
-          status: document.getElementById("status").value,
-          matricula: document.getElementById("matricula").value,
-          firstname: document.getElementById("firstname").value,
-          lastname: document.getElementById("lastname").value,
-          correo: document.getElementById("correo").value,
-          phone: document.getElementById("phone").value,
-          grado_estudios: document.getElementById("grado_estudios").value,
-          course: document.getElementById("course").value,
-          modalidad: document.getElementById("modalidad").value,
-          
-          costo_base: document.getElementById("hidden_costoBase").value,
-          descuento_porcentaje: document.getElementById("hidden_descuento").value,
-          costo_final: document.getElementById("hidden_costoFinal").value,
-          
-          factura: document.getElementById("factura").value,
-          medio: document.getElementById("medio").value
-        };
+          const formData = {
+            status: document.getElementById("status").value,
+            matricula: document.getElementById("matricula").value,
+            firstname: document.getElementById("firstname").value,
+            lastname: document.getElementById("lastname").value,
+            correo: document.getElementById("correo").value,
+            phone: document.getElementById("phone").value,
+            grado_estudios: document.getElementById("grado_estudios").value,
+            course: document.getElementById("course").value,
+            modalidad: document.getElementById("modalidad").value,
 
-        fetch(ENV_CONFIG.SCRIPT_URL, {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        }).then(() => {
-          document.getElementById("loading-overlay").style.display = "none";
-          document.getElementById("form-container").classList.add("hidden");
-          document.getElementById("seccion-tipo-ingreso").classList.add("hidden");
-          document.getElementById("mensaje-exito").classList.remove("hidden");
-        }).catch((error) => {
-          document.getElementById("loading-overlay").style.display = "none";
-          alert("Error de conexión. Intente de nuevo.");
+            costo_base: document.getElementById("hidden_costoBase").value,
+            descuento_porcentaje:
+              document.getElementById("hidden_descuento").value,
+            costo_final: document.getElementById("hidden_costoFinal").value,
+
+            factura: document.getElementById("factura").value,
+            medio: document.getElementById("medio").value,
+          };
+
+          fetch(ENV_CONFIG.SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData),
+          })
+            .then(() => {
+              document.getElementById("loading-overlay").style.display = "none";
+              document.getElementById("form-container").classList.add("hidden");
+              document
+                .getElementById("seccion-tipo-ingreso")
+                .classList.add("hidden");
+              document
+                .getElementById("mensaje-exito")
+                .classList.remove("hidden");
+            })
+            .catch((error) => {
+              document.getElementById("loading-overlay").style.display = "none";
+              alert("Error de conexión. Intente de nuevo.");
+            });
         });
-      });
     </script>
   </body>
 </html>
