@@ -38,19 +38,18 @@
         padding: 20px 20px;
         border-radius: 4px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-        border-top: 5px solid var(--upm-red);
       }
 
       header {
         text-align: center;
-        margin-bottom: 40px;
+        /* margin-bottom: 40px; */
         padding-bottom: 20px;
         border-bottom: 1px solid var(--border-color);
       }
       .header-logo {
         max-width: 220px;
         height: auto;
-        margin-bottom: 25px;
+        /* margin-bottom: 25px; */
       }
       h1 {
         font-family: "Merriweather", serif;
@@ -91,6 +90,7 @@
         cursor: pointer;
         transition: all 0.2s ease;
         font-family: inherit;
+        width: 100%;
       }
       .btn-outline:hover {
         border-color: var(--upm-red);
@@ -101,7 +101,11 @@
         color: #ffffff;
         border-color: var(--upm-red);
       }
-
+      @media only screen and (min-width: 1024px) {
+        .btn-outline{
+          width: auto;
+        }
+      }
       .form-wrapper {
         animation: fadeIn 0.5s ease;
       }
@@ -111,7 +115,7 @@
         font-size: 20px;
         border-bottom: 1px solid var(--border-color);
         padding-bottom: 10px;
-        margin-bottom: 25px;
+        /* margin-bottom: 25px; */
         margin-top: 35px;
       }
 
@@ -121,7 +125,7 @@
         gap: 20px;
       }
       .form-group {
-        margin-bottom: 20px;
+        /* margin-bottom: 20px; */
       }
       .full-width {
         grid-column: 1 / -1;
