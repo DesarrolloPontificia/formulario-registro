@@ -881,10 +881,10 @@
           slug: "https://pontificia.edu.mx/cursos/teologia-biblica-comprender-e-interpretar-las-sagradas-escrituras/",
         },
       };
-
       window.onload = function () {
         const selectCurso = document.getElementById("course");
 
+        // 1. Cargar las opciones en el select
         for (let nombreCurso in catalogoCursos) {
           let option = document.createElement("option");
           option.value = nombreCurso;
@@ -892,17 +892,27 @@
           selectCurso.appendChild(option);
         }
 
-        const urlActual = window.location.href;
+        // 2. Súper Detector de URLs (Detecta iframes y URLs normales)
+        const urlNavegador = window.location.href || "";
+        const urlPadre = document.referrer || ""; // Lee la URL de WordPress si está en un iframe
+        const textoDondeBuscar = (urlNavegador + " " + urlPadre).toLowerCase();
+
         for (const [nombreCurso, datosCurso] of Object.entries(
           catalogoCursos,
         )) {
-          if (datosCurso.slug && urlActual.includes(datosCurso.slug)) {
-            selectCurso.value = nombreCurso;
+          if (datosCurso.slug) {
+            // Convertimos el slug a minúsculas para evitar fallos tontos
+            const slugBuscado = datosCurso.slug.toLowerCase();
 
-            if (typeof actualizarModalidades === "function") {
-              actualizarModalidades();
+            if (textoDondeBuscar.includes(slugBuscado)) {
+              selectCurso.value = nombreCurso; // Selecciona el curso
+
+              // Ejecuta las modalidades y precios
+              if (typeof actualizarModalidades === "function") {
+                actualizarModalidades();
+              }
+              break; // Detiene la búsqueda una vez que lo encuentra
             }
-            break;
           }
         }
       };
