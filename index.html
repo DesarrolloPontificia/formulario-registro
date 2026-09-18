@@ -881,7 +881,7 @@
           slug: "https://pontificia.edu.mx/cursos/teologia-biblica-comprender-e-interpretar-las-sagradas-escrituras/",
         },
       };
-window.onload = function () {
+      window.onload = function () {
         const selectCurso = document.getElementById("course");
 
         // 1. Cargar todas las opciones en el select
@@ -892,18 +892,22 @@ window.onload = function () {
           selectCurso.appendChild(option);
         }
 
-        // 2. Leer si la URL del iframe trae un parámetro ?curso=...
+        // 2. Leer si la URL de Vercel trae un parámetro ?curso=...
         const parametrosURL = new URLSearchParams(window.location.search);
         const cursoParam = parametrosURL.get("curso");
 
         if (cursoParam) {
           const slugBuscado = cursoParam.toLowerCase();
-          
-          for (const [nombreCurso, datosCurso] of Object.entries(catalogoCursos)) {
-            // Comparamos el slug del catálogo con lo que viene en la URL del iframe
-            if (datosCurso.slug && datosCurso.slug.toLowerCase() === slugBuscado) {
+
+          for (const [nombreCurso, datosCurso] of Object.entries(
+            catalogoCursos,
+          )) {
+            if (
+              datosCurso.slug &&
+              datosCurso.slug.toLowerCase() === slugBuscado
+            ) {
               selectCurso.value = nombreCurso;
-              
+
               // Disparamos la función para cargar modalidades y costos automáticamente
               if (typeof actualizarModalidades === "function") {
                 actualizarModalidades();
