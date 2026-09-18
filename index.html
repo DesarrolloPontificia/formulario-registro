@@ -102,7 +102,7 @@
         border-color: var(--upm-red);
       }
       @media only screen and (min-width: 1024px) {
-        .btn-outline{
+        .btn-outline {
           width: auto;
         }
       }
@@ -395,9 +395,7 @@
                 <option value="" disabled selected>
                   Seleccione una opción...
                 </option>
-                <option value="Preparatoria / Bachillerato">
-                  Preparatoria / Bachillerato
-                </option>
+                <option value="Bachillerato">Bachillerato</option>
                 <option value="Licenciatura">Licenciatura</option>
                 <option value="Maestría">Maestría</option>
                 <option value="Doctorado">Doctorado</option>
@@ -519,185 +517,540 @@
     </div>
 
     <script>
-      const ENV_CONFIG = {
-        SCRIPT_URL:
-          "https://script.google.com/macros/s/AKfycbzjc0VvXZ42h4JcJyAnWm0hnqM115AJsb8oFGe2d6n4ss9YBKDBtH8HNmC0c0TZU7KCsQ/exec",
-      };
+            const ENV_CONFIG = {
+              SCRIPT_URL:
+                "https://script.google.com/macros/s/AKfycbzjc0VvXZ42h4JcJyAnWm0hnqM115AJsb8oFGe2d6n4ss9YBKDBtH8HNmC0c0TZU7KCsQ/exec",
+            };
 
-      // ⚠️ Modificación importante: modalidades es ahora un ARREGLO de textos
-      const catalogoCursos = {
-        "Introductorio en teología bíblica": {
-          costoBase: 1500.0,
-          descuentoPorcentaje: 10,
-          fecha_inicio_descuento: "2026-09-01",
-          fecha_fin_descuento: "2026-09-30",
-          modalidades: ["Virtual", "Presencial", "Sincrónica"],
-        },
-        "Fundamentos de la Teología": {
-          costoBase: 2200.0,
-          descuentoPorcentaje: 10,
-          fecha_inicio_descuento: "2026-10-01",
-          fecha_fin_descuento: "2026-10-15",
-          modalidades: ["Presencial"],
-        },
-      };
+            const catalogoCursos = {
+              "Teología Bíblica: Comprender e Interpretar las Sagradas Escrituras": {
+                costoBase: 5395.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-09-01",
+                fecha_fin_descuento: "2026-09-30",
+                modalidades: ["A distancia"],
+                slug: "https://pontificia.edu.mx/cursos/teologia-biblica-comprender-e-interpretar-las-sagradas-escrituras/",
+              },
+              "Teología Católica: Fuentes, Método y Misión - Primer Semestre": {
+                costoBase: 5395.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia"],
+              slug: "/teologia-biblica",
+            },
+              "Teología y Pastoral Litúrgica": {
+                costoBase: 5395.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia"],
+              slug: "/teologia-biblica",
+            },
+              "Cristología: Persona y Misión de Jesucristo": {
+                costoBase: 5395.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia"],
+              slug: "/teologia-biblica",
+            },
+              "Mariología: María en el Misterio de Cristo y de la Iglesia": {
+                costoBase: 5395.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia"],
+              slug: "/teologia-biblica",
+            },
+              "Moral de la sexualidad: Amar con el cuerpo": {
+                costoBase: 5395.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia"],
+              slug: "/teologia-biblica",
+            },
+              "Eclesiología: Misterio, Comunión y Misión": {
+                costoBase: 5395.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia"],
+              slug: "/teologia-biblica",
+            },
+              "Arqueología bíblica: historia, cultura y contextos": {
+                costoBase: 5395.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia"],
+              slug: "/teologia-biblica",
+            },
+              "Moral social cristiana: paz, justicia y desafíos contemporáneos": {
+                costoBase: 5395.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia"],
+              slug: "/teologia-biblica",
+            },
+              "Diplomado Archivos Eclesiásticos": {
+                costoBase: 5395.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["Presencial", "Virtual Sincrónico"],
+              slug: "/teologia-biblica",
+            },
+              "Historia de la Iglesia Universal y de México": {
+                costoBase: 5395.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["Presencial", "Virtual Sincrónico"],
+              slug: "/teologia-biblica",
+            },
+              "Prevención del abuso en ambientes catequéticos: cultura del cuidado, prevención e intervención":
+                {
+                  costoBase: 5395.0,
+                  descuentoPorcentaje: 10,
+                  fecha_inicio_descuento: "2026-10-01",
+                  fecha_fin_descuento: "2026-10-15",
+                  modalidades: ["A distancia"],
+                slug: "/teologia-biblica",
+              },
+              "Religiosidad popular mexicana: criterios teológicos": {
+                costoBase: 2550.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia"],
+              slug: "/teologia-biblica",
+            },
+              "Credo: contenido y estructura de la fe católica": {
+                costoBase: 2550.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia"],
+              slug: "/teologia-biblica",
+            },
+              "Teología y Praxis de la Predicción": {
+                costoBase: 3350.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia"],
+              slug: "/teologia-biblica",
+            },
+              "TALLER: TALLER DE SALMODIA": {
+                costoBase: 2550.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["Presencial", "Virtual Sincrónico"],
+              slug: "/teologia-biblica",
+            },
+              "Cuestiones canónicas para religiosos: fundamentos y práctica": {
+                costoBase: 5395.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia"],
+              slug: "/teologia-biblica",
+            },
+              "Tanatología Personalista Acompañamiento ante el duelo y el sufrimiento humano - Primer Semestre":
+                {
+                  costoBase: 5395.0,
+                  descuentoPorcentaje: 10,
+                  fecha_inicio_descuento: "2026-10-01",
+                  fecha_fin_descuento: "2026-10-15",
+                  modalidades: ["A distancia", "Presencial"],
+                slug: "/teologia-biblica",
+              },
+              "Logoterapia - Primer Semestre": {
+                costoBase: 5395.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia", "Presencial"],
+              slug: "/teologia-biblica",
+            },
+              "Arte Sacro: Historia Teología y Lenguaje Simbólico": {
+                costoBase: 5395.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia"],
+              slug: "/teologia-biblica",
+            },
+              "Iconografía Cristiana: Teología y Lectura de la Imagen Sagrada": {
+                costoBase: 5395.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia"],
+              slug: "/teologia-biblica",
+            },
+              "Diplomado en Bioética: cultura de la vida, la salud y el cuidado": {
+                costoBase: 5395.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia"],
+              slug: "/teologia-biblica",
+            },
+              "Cuidado y bienestar en la nueva longevidad": {
+                costoBase: 5395.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia"],
+              slug: "/teologia-biblica",
+            },
+              "Historia y pensamiento de las religiones monoteístas": {
+                costoBase: 5395.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["Presencial", "Virtual Sincrónico"],
+              slug: "/teologia-biblica",
+            },
+              "Inteligencia Espiritual": {
+                costoBase: 5395.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["Presencial", "Virtual Sincrónico"],
+              slug: "/teologia-biblica",
+            },
+              "Preparándonos para lo inevitable": {
+                costoBase: 3550.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["Presencial"],
+              slug: "/teologia-biblica",
+            },
+              "¿Cómo afrontar tus duelos? - Arteterapia": {
+                costoBase: 3550.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia"],
+              slug: "/teologia-biblica",
+            },
+              // "Decoración de cirio pascual": {
+              //   costoBase: 3550.0,
+              //   descuentoPorcentaje: 10,
+              //   fecha_inicio_descuento: "2026-10-01",
+              //   fecha_fin_descuento: "2026-10-15",
+              //   modalidades: ["Presencial"],
+              // slug: "/teologia-biblica",},
+              "Curso - taller de Iconografía Bizantina: Escritura de un Icono - SIN MATERIAL":
+                {
+                  costoBase: 5395.0,
+                  descuentoPorcentaje: 10,
+                  fecha_inicio_descuento: "2026-10-01",
+                  fecha_fin_descuento: "2026-10-15",
+                  modalidades: ["Presencial"],
+                slug: "/teologia-biblica",
+              },
+              "Curso - taller de Iconografía Bizantina: Escritura de un Icono - INCLUYE MATERIAL":
+                {
+                  costoBase: 7195.0,
+                  descuentoPorcentaje: 10,
+                  fecha_inicio_descuento: "2026-10-01",
+                  fecha_fin_descuento: "2026-10-15",
+                  modalidades: ["Presencial"],
+                slug: "/teologia-biblica",
+              },
+              "Discernir las emociones a la luz del evangelio": {
+                costoBase: 3350.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["Presencial"],
+              slug: "/teologia-biblica",
+            },
+              "Fundamentos del pensar filosófico": {
+                costoBase: 5395.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia"],
+              slug: "/teologia-biblica",
+            },
+              "Inteligencia artificial e inteligencia humana: distinción límites y responsabilidad ética":
+                {
+                  costoBase: 5395.0,
+                  descuentoPorcentaje: 10,
+                  fecha_inicio_descuento: "2026-10-01",
+                  fecha_fin_descuento: "2026-10-15",
+                  modalidades: ["A distancia"],
+                slug: "/teologia-biblica",
+              },
+              "Filosofía cristiana en los siglos XIX-XXI": {
+                costoBase: 5395.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia"],
+              slug: "/teologia-biblica",
+            },
+              "Latín: morfología y sintaxis": {
+                costoBase: 5395.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia"],
+              slug: "/teologia-biblica",
+            },
+              "Griego antiguo: morfología y sintaxis": {
+                costoBase: 5395.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia"],
+              slug: "/teologia-biblica",
+            },
+              "Formación Integral de formadores: Seminarios y vida consagrada": {
+                costoBase: 5395.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia"],
+              slug: "/teologia-biblica",
+            },
+              "Iniciación en acompañamiento Humano y Espiritual": {
+                costoBase: 5395.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia"],
+              slug: "/teologia-biblica",
+            },
+              "Pedagogía de la interioridad": {
+                costoBase: 5395.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia"],
+              slug: "/teologia-biblica",
+            },
+              "Acompañar procesos: herramientas para la escucha y el discernimiento espiritual":
+                {
+                  costoBase: 5395.0,
+                  descuentoPorcentaje: 10,
+                  fecha_inicio_descuento: "2026-10-01",
+                  fecha_fin_descuento: "2026-10-15",
+                  modalidades: ["Presencial"],
+                slug: "/teologia-biblica",
+              },
+              "Espiritualidad del misionero digital": {
+                costoBase: 5395.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia"],
+              slug: "/teologia-biblica",
+            },
+              "Competencias docentes y planeación por competencia": {
+                costoBase: 2550.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia"],
+              slug: "/teologia-biblica",
+            },
+              "Competencias digitales docentes": {
+                costoBase: 2550.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia"],
+              slug: "/teologia-biblica",
+            },
+              "Enseñar con inteligencia artificial y estrategias innovadoras": {
+                costoBase: 2550.0,
+                descuentoPorcentaje: 10,
+                fecha_inicio_descuento: "2026-10-01",
+                fecha_fin_descuento: "2026-10-15",
+                modalidades: ["A distancia"],
+              slug: "/teologia-biblica",
+            },
+            };
 
       window.onload = function () {
-        const selectCurso = document.getElementById("course");
-        for (let nombreCurso in catalogoCursos) {
-          let option = document.createElement("option");
-          option.value = nombreCurso;
-          option.textContent = nombreCurso;
-          selectCurso.appendChild(option);
-        }
-      };
+              const selectCurso = document.getElementById("course");
 
-      function mostrarFormulario(tipo) {
-        document.getElementById("form-container").classList.remove("hidden");
-        const btnNuevo = document.getElementById("btn-nuevo");
-        const btnReins = document.getElementById("btn-reins");
-        const divMatricula = document.getElementById("matricula-group");
-        const inputMatricula = document.getElementById("matricula");
+              for (let nombreCurso in catalogoCursos) {
+                let option = document.createElement("option");
+                option.value = nombreCurso;
+                option.textContent = nombreCurso;
+                selectCurso.appendChild(option);
+              }
 
-        btnNuevo.classList.remove("active");
-        btnReins.classList.remove("active");
+              const urlActual = window.location.pathname;
+              for (const [nombreCurso, datosCurso] of Object.entries(catalogoCursos)) {
+                if (datosCurso.slug && urlActual.includes(datosCurso.slug)) {
+                  selectCurso.value = nombreCurso;
 
-        if (tipo === "nuevo") {
-          btnNuevo.classList.add("active");
-          divMatricula.style.display = "none";
-          inputMatricula.required = false;
-          document.getElementById("status").value = "Nuevo Ingreso";
-        } else {
-          btnReins.classList.add("active");
-          divMatricula.style.display = "block";
-          inputMatricula.required = true;
-          document.getElementById("status").value = "Reinscripción";
-        }
-      }
+                  if (typeof actualizarModalidades === "function") {
+                    actualizarModalidades();
+                  }
+                  break;
+                }
+              }
+            };
 
-      function actualizarModalidades() {
-        const cursoNombre = document.getElementById("course").value;
-        const selectMod = document.getElementById("modalidad");
+            function mostrarFormulario(tipo) {
+              document.getElementById("form-container").classList.remove("hidden");
+              const btnNuevo = document.getElementById("btn-nuevo");
+              const btnReins = document.getElementById("btn-reins");
+              const divMatricula = document.getElementById("matricula-group");
+              const inputMatricula = document.getElementById("matricula");
 
-        selectMod.innerHTML =
-          '<option value="" disabled selected>Seleccione modalidad...</option>';
-        document.getElementById("cotizacion-container").style.display = "none";
+              btnNuevo.classList.remove("active");
+              btnReins.classList.remove("active");
 
-        if (catalogoCursos[cursoNombre]) {
-          catalogoCursos[cursoNombre].modalidades.forEach((mod) => {
-            let option = document.createElement("option");
-            option.value = mod;
-            option.textContent = mod;
-            selectMod.appendChild(option);
-          });
-        }
-      }
+              if (tipo === "nuevo") {
+                btnNuevo.classList.add("active");
+                divMatricula.style.display = "none";
+                inputMatricula.required = false;
+                document.getElementById("status").value = "Nuevo Ingreso";
+              } else {
+                btnReins.classList.add("active");
+                divMatricula.style.display = "block";
+                inputMatricula.required = true;
+                document.getElementById("status").value = "Reinscripción";
+              }
+            }
 
-      const formatoMoneda = new Intl.NumberFormat("es-MX", {
-        style: "currency",
-        currency: "MXN",
-      });
+            function actualizarModalidades() {
+              const cursoNombre = document.getElementById("course").value;
+              const selectMod = document.getElementById("modalidad");
 
-      function actualizarCosto() {
-        const cursoNombre = document.getElementById("course").value;
-        const modalidadSelect = document.getElementById("modalidad").value;
-        const contenedor = document.getElementById("cotizacion-container");
+              selectMod.innerHTML =
+                '<option value="" disabled selected>Seleccione modalidad...</option>';
+              document.getElementById("cotizacion-container").style.display = "none";
 
-        if (!cursoNombre || !modalidadSelect) return;
+              if (catalogoCursos[cursoNombre]) {
+                catalogoCursos[cursoNombre].modalidades.forEach((mod) => {
+                  let option = document.createElement("option");
+                  option.value = mod;
+                  option.textContent = mod;
+                  selectMod.appendChild(option);
+                });
+              }
+            }
 
-        const curso = catalogoCursos[cursoNombre];
-        let costoFinal = curso.costoBase;
-        let tieneDescuento = false;
-        let cantidadAhorrada = 0;
-
-        const hoy = new Date();
-        const fechaInicio = new Date(
-          curso.fecha_inicio_descuento + "T00:00:00",
-        );
-        const fechaFin = new Date(curso.fecha_fin_descuento + "T23:59:59");
-
-        if (hoy >= fechaInicio && hoy <= fechaFin) {
-          tieneDescuento = true;
-          cantidadAhorrada =
-            curso.costoBase * (curso.descuentoPorcentaje / 100);
-          costoFinal = curso.costoBase - cantidadAhorrada;
-        }
-
-        document.getElementById("display-base").textContent =
-          formatoMoneda.format(curso.costoBase);
-        document.getElementById("display-total").textContent =
-          formatoMoneda.format(costoFinal);
-
-        const rowDescuento = document.getElementById("row-descuento");
-        if (tieneDescuento) {
-          document.getElementById("display-porcentaje").textContent =
-            curso.descuentoPorcentaje;
-          document.getElementById("display-ahorro").textContent =
-            "-" + formatoMoneda.format(cantidadAhorrada);
-          rowDescuento.style.display = "flex";
-        } else {
-          rowDescuento.style.display = "none";
-        }
-
-        // Se guardan formateados para que pasen bonito al Google Sheets
-        document.getElementById("hidden_costoBase").value =
-          formatoMoneda.format(curso.costoBase);
-        document.getElementById("hidden_descuento").value = tieneDescuento
-          ? curso.descuentoPorcentaje + "%"
-          : "0%";
-        document.getElementById("hidden_costoFinal").value =
-          formatoMoneda.format(costoFinal);
-
-        contenedor.style.display = "block";
-      }
-
-      document
-        .getElementById("registroForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          document.getElementById("loading-overlay").style.display = "flex";
-
-          const formData = {
-            status: document.getElementById("status").value,
-            matricula: document.getElementById("matricula").value,
-            firstname: document.getElementById("firstname").value,
-            lastname: document.getElementById("lastname").value,
-            correo: document.getElementById("correo").value,
-            phone: document.getElementById("phone").value,
-            grado_estudios: document.getElementById("grado_estudios").value,
-            course: document.getElementById("course").value,
-            modalidad: document.getElementById("modalidad").value,
-
-            costo_base: document.getElementById("hidden_costoBase").value,
-            descuento_porcentaje:
-              document.getElementById("hidden_descuento").value,
-            costo_final: document.getElementById("hidden_costoFinal").value,
-
-            factura: document.getElementById("factura").value,
-            medio: document.getElementById("medio").value,
-          };
-
-          fetch(ENV_CONFIG.SCRIPT_URL, {
-            method: "POST",
-            mode: "no-cors",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(formData),
-          })
-            .then(() => {
-              document.getElementById("loading-overlay").style.display = "none";
-              document.getElementById("form-container").classList.add("hidden");
-              document
-                .getElementById("seccion-tipo-ingreso")
-                .classList.add("hidden");
-              document
-                .getElementById("mensaje-exito")
-                .classList.remove("hidden");
-            })
-            .catch((error) => {
-              document.getElementById("loading-overlay").style.display = "none";
-              alert("Error de conexión. Intente de nuevo.");
+            const formatoMoneda = new Intl.NumberFormat("es-MX", {
+              style: "currency",
+              currency: "MXN",
             });
-        });
+
+            function actualizarCosto() {
+              const cursoNombre = document.getElementById("course").value;
+              const modalidadSelect = document.getElementById("modalidad").value;
+              const contenedor = document.getElementById("cotizacion-container");
+
+              if (!cursoNombre || !modalidadSelect) return;
+
+              const curso = catalogoCursos[cursoNombre];
+              let costoFinal = curso.costoBase;
+              let tieneDescuento = false;
+              let cantidadAhorrada = 0;
+
+              const hoy = new Date();
+              const fechaInicio = new Date(
+                curso.fecha_inicio_descuento + "T00:00:00",
+              );
+              const fechaFin = new Date(curso.fecha_fin_descuento + "T23:59:59");
+
+              if (hoy >= fechaInicio && hoy <= fechaFin) {
+                tieneDescuento = true;
+                cantidadAhorrada =
+                  curso.costoBase * (curso.descuentoPorcentaje / 100);
+                costoFinal = curso.costoBase - cantidadAhorrada;
+              }
+
+              document.getElementById("display-base").textContent =
+                formatoMoneda.format(curso.costoBase);
+              document.getElementById("display-total").textContent =
+                formatoMoneda.format(costoFinal);
+
+              const rowDescuento = document.getElementById("row-descuento");
+              if (tieneDescuento) {
+                document.getElementById("display-porcentaje").textContent =
+                  curso.descuentoPorcentaje;
+                document.getElementById("display-ahorro").textContent =
+                  "-" + formatoMoneda.format(cantidadAhorrada);
+                rowDescuento.style.display = "flex";
+              } else {
+                rowDescuento.style.display = "none";
+              }
+
+              // Se guardan formateados para que pasen bonito al Google Sheets
+              document.getElementById("hidden_costoBase").value =
+                formatoMoneda.format(curso.costoBase);
+              document.getElementById("hidden_descuento").value = tieneDescuento
+                ? curso.descuentoPorcentaje + "%"
+                : "0%";
+              document.getElementById("hidden_costoFinal").value =
+                formatoMoneda.format(costoFinal);
+
+              contenedor.style.display = "block";
+            }
+
+            document
+              .getElementById("registroForm")
+              .addEventListener("submit", function (e) {
+                e.preventDefault();
+                document.getElementById("loading-overlay").style.display = "flex";
+
+                const formData = {
+                  status: document.getElementById("status").value,
+                  matricula: document.getElementById("matricula").value,
+                  firstname: document.getElementById("firstname").value,
+                  lastname: document.getElementById("lastname").value,
+                  correo: document.getElementById("correo").value,
+                  phone: document.getElementById("phone").value,
+                  grado_estudios: document.getElementById("grado_estudios").value,
+                  course: document.getElementById("course").value,
+                  modalidad: document.getElementById("modalidad").value,
+
+                  costo_base: document.getElementById("hidden_costoBase").value,
+                  descuento_porcentaje:
+                    document.getElementById("hidden_descuento").value,
+                  costo_final: document.getElementById("hidden_costoFinal").value,
+
+                  factura: document.getElementById("factura").value,
+                  medio: document.getElementById("medio").value,
+                };
+
+                fetch(ENV_CONFIG.SCRIPT_URL, {
+                  method: "POST",
+                  mode: "no-cors",
+                  headers: { "Content-Type": "application/jsoslug: "/teologia-biblica",n" },
+                  body: JSON.stringify(formData),
+                })
+                  .then(() => {
+                    document.getElementById("loading-overlay").style.display = "none";
+                    document.getElementById("form-container").classList.add("hidden");
+                    document
+                      .getElementById("seccion-tipo-ingreso")
+                      .classList.add("hidden");
+                    document
+                      .getElementById("mensaje-exito")
+                      .classList.remove("hidden");
+                  })
+                  .catch((error) => {
+                    document.getElementById("loading-overlay").style.display = "none";
+                    alert("Error de conexión. Intente de nuevo.");
+                  });
+              });
     </script>
   </body>
 </html>
