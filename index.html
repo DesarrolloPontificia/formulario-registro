@@ -915,6 +915,31 @@
               break;
             }
           }
+          // Escuchar el mensaje que manda WordPress cuando abren el popup
+          window.addEventListener("message", function (event) {
+            // Validamos que el mensaje venga de tu sitio seguro de WordPress
+            if (event.origin !== "https://pontificia.edu.mx") return;
+
+            const cursoRecibido = event.data.toLowerCase();
+            const selectCurso = document.getElementById("course");
+
+            for (const [nombreCurso, datosCurso] of Object.entries(
+              catalogoCursos,
+            )) {
+              if (
+                datosCurso.slug &&
+                datosCurso.slug.toLowerCase() === cursoRecibido
+              ) {
+                selectCurso.value = nombreCurso;
+
+                // Disparamos las funciones de actualización de modalidades y costos
+                if (typeof actualizarModalidades === "function") {
+                  actualizarModalidades();
+                }
+                break;
+              }
+            }
+          });
         }
       };
 
