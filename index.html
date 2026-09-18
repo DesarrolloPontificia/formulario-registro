@@ -881,10 +881,10 @@
           slug: "https://pontificia.edu.mx/cursos/teologia-biblica-comprender-e-interpretar-las-sagradas-escrituras/",
         },
       };
-      window.onload = function () {
+window.onload = function () {
         const selectCurso = document.getElementById("course");
 
-        // 1. Cargar las opciones en el select
+        // 1. Cargar todas las opciones en el select
         for (let nombreCurso in catalogoCursos) {
           let option = document.createElement("option");
           option.value = nombreCurso;
@@ -892,26 +892,23 @@
           selectCurso.appendChild(option);
         }
 
-        // 2. Súper Detector de URLs (Detecta iframes y URLs normales)
-        const urlNavegador = window.location.href || "";
-        const urlPadre = document.referrer || ""; // Lee la URL de WordPress si está en un iframe
-        const textoDondeBuscar = (urlNavegador + " " + urlPadre).toLowerCase();
+        // 2. Leer si la URL del iframe trae un parámetro ?curso=...
+        const parametrosURL = new URLSearchParams(window.location.search);
+        const cursoParam = parametrosURL.get("curso");
 
-        for (const [nombreCurso, datosCurso] of Object.entries(
-          catalogoCursos,
-        )) {
-          if (datosCurso.slug) {
-            // Convertimos el slug a minúsculas para evitar fallos tontos
-            const slugBuscado = datosCurso.slug.toLowerCase();
-
-            if (textoDondeBuscar.includes(slugBuscado)) {
-              selectCurso.value = nombreCurso; // Selecciona el curso
-
-              // Ejecuta las modalidades y precios
+        if (cursoParam) {
+          const slugBuscado = cursoParam.toLowerCase();
+          
+          for (const [nombreCurso, datosCurso] of Object.entries(catalogoCursos)) {
+            // Comparamos el slug del catálogo con lo que viene en la URL del iframe
+            if (datosCurso.slug && datosCurso.slug.toLowerCase() === slugBuscado) {
+              selectCurso.value = nombreCurso;
+              
+              // Disparamos la función para cargar modalidades y costos automáticamente
               if (typeof actualizarModalidades === "function") {
                 actualizarModalidades();
               }
-              break; // Detiene la búsqueda una vez que lo encuentra
+              break;
             }
           }
         }
