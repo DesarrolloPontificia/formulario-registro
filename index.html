@@ -289,7 +289,7 @@
       </header>
 
       <div class="question-section" id="seccion-tipo-ingreso">
-        <h3>Seleccione su tipo de ingreso:</h3>
+        <h3>¿Ya eres o has sido alumno de la UPM?</h3>
         <div class="button-group">
           <button
             type="button"
@@ -297,7 +297,7 @@
             class="btn-outline"
             onclick="mostrarFormulario('nuevo')"
           >
-            Nuevo Ingreso
+            No, es mi primera vez
           </button>
           <button
             type="button"
@@ -305,11 +305,10 @@
             class="btn-outline"
             onclick="mostrarFormulario('reins')"
           >
-            Reinscripción
+            Sí, ya tengo matrícula
           </button>
         </div>
       </div>
-
       <!-- MENSAJE DE ÉXITO -->
       <div
         id="mensaje-exito"
@@ -330,7 +329,7 @@
           ></path>
         </svg>
         <h2
-          style="color: #27ae60; font-family: &quot;Merriweather&quot;, serif"
+          style="color: #27ae60; font-family: 'Merriweather', serif"
         >
           ¡Registro Exitoso!
         </h2>
@@ -815,6 +814,7 @@
           modalidades: ["A distancia"],
           slug: "formacion-integral-de-formadores-seminarios-y-vida-consagrada-2",
         },
+        //
         "Iniciación en acompañamiento Humano y Espiritual": {
           costoBase: 5395.0,
           descuentoPorcentaje: 10,
