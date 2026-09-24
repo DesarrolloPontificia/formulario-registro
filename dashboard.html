@@ -3,29 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard Alumnos - Educación Continua UPM</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+    <title>Alumnos - Educación Continua UPM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <style>
       :root {
-        --upm-red: #ae2d46;
-        --upm-gold: #c39a5c;
+        --upm-red: #9a2643;
+        --upm-gold: #ffbb24;
         --bg: #f4f7f6;
-        --text: #333;
-        --border: #ddd;
+        --text: #666666;
+        --border: #e0e0e0;
+        --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        --crm-blue: #005a9e;
       }
       body {
-        font-family: "Open Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         padding: 20px;
         background-color: var(--bg);
         color: var(--text);
         margin: 0;
+        overflow-x: hidden;
       }
 
       .header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 2px solid var(--upm-red);
+        border-bottom: 2px solid var(--border);
         padding-bottom: 15px;
         margin-bottom: 20px;
       }
@@ -33,36 +38,77 @@
         color: var(--upm-red);
         margin: 0;
         font-size: 24px;
+        font-weight: 700;
       }
 
-      /* Toolbar de controles */
-      .toolbar {
+      .metrics-container {
         display: flex;
         gap: 15px;
         margin-bottom: 20px;
         flex-wrap: wrap;
+      }
+      .metric-card {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        flex: 1;
+        min-width: 200px;
+        box-shadow: var(--card-shadow);
+        border: 2px solid var(--upm-red);
+      }
+      .metric-title {
+        font-size: 11px;
+        color: #777;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .metric-value {
+        font-size: 28px;
+        font-weight: bold;
+        color: var(--text);
+        margin-top: 8px;
+      }
+
+      .toolbar {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
         background: #fff;
         padding: 15px;
-        border-radius: 6px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        border-radius: 10px;
+        box-shadow: var(--card-shadow);
+        align-items: center;
       }
-      .toolbar input, .toolbar select {
-        padding: 10px;
+      .toolbar input,
+      .toolbar select {
+        padding: 10px 12px;
         border: 1px solid var(--border);
-        border-radius: 4px;
+        border-radius: 6px;
         flex: 1;
         min-width: 150px;
         font-family: inherit;
-        font-size: 14px;
+        font-size: 13px;
+        background: #fdfdfd;
       }
-      .search-box { flex: 2; min-width: 250px !important; }
+      .toolbar input:focus,
+      .toolbar select:focus {
+        outline: none;
+        border-color: var(--crm-blue);
+        background: #fff;
+      }
+      .search-box {
+        flex: 2;
+        min-width: 250px !important;
+      }
 
-      /* Tabla */
       .table-container {
         background: #fff;
-        border-radius: 6px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        border-radius: 10px;
+        box-shadow: var(--card-shadow);
         overflow-x: auto;
+        margin-bottom: 20px;
       }
       table {
         width: 100%;
@@ -70,244 +116,342 @@
         text-align: left;
       }
       th {
-        background-color: var(--upm-red);
-        color: white;
-        padding: 12px 15px;
+        background-color: #fafafa;
+        color: #555;
+        padding: 14px 15px;
         font-weight: 600;
-        font-size: 13px;
+        font-size: 12px;
+        text-transform: uppercase;
+        border-bottom: 2px solid var(--border);
         cursor: pointer;
         user-select: none;
         white-space: nowrap;
-        transition: background 0.2s;
       }
-      th:hover { background-color: #8c2335; }
-      th span.sort-icon { font-size: 10px; margin-left: 5px; color: #ffcccc; }
-      
+      th span.sort-icon {
+        font-size: 10px;
+        margin-left: 5px;
+        color: var(--upm-red);
+      }
       td {
-        padding: 12px 15px;
+        padding: 14px 15px;
         border-bottom: 1px solid var(--border);
         font-size: 13px;
         vertical-align: middle;
       }
-      tr:hover { background-color: #f9f9f9; }
+      tr:hover { background-color: #f7f9fc; }
+      tr.row-missing-files { border-left: 4px solid #ff4d4d; }
 
-      /* ESTILO: Fila Sin Archivos */
-      tr.row-missing-files {
-        background-color: #fffafa;
-        border-left: 4px solid #ff4d4d;
-      }
-      tr.row-missing-files:hover { background-color: #ffe6e6; }
-      
-      .btn-missing {
-        background-color: #ffeeee;
-        color: #cc0000;
-        border: 1px dashed #cc0000 !important;
-        cursor: not-allowed;
-      }
-
-      /* Semáforos y Badges */
       .badge {
-        padding: 4px 8px;
-        border-radius: 20px;
+        padding: 5px 10px;
+        border-radius: 6px;
         font-size: 11px;
-        font-weight: bold;
+        font-weight: 700;
         display: inline-block;
         white-space: nowrap;
       }
-      .badge-green { background-color: #e3fbed; color: #107c41; border: 1px solid #107c41; }
-      .badge-yellow { background-color: #fff4ce; color: #9a6a00; border: 1px solid #9a6a00; }
-      .badge-blue { background-color: #e1f0fa; color: #005a9e; border: 1px solid #005a9e; }
-      .badge-red { background-color: #fde7e9; color: #d13438; border: 1px solid #d13438; }
+      .badge-green { background-color: #e3fbed; color: #107c41; }
+      .badge-yellow { background-color: #fff4ce; color: #ffbb24; }
+      .badge-blue { background-color: #e1f0fa; color: #005a9e; }
+      .badge-gray { background-color: #f0f0f0; color: #666666; }
 
-      /* Botones */
       .btn {
-        padding: 6px 12px;
+        padding: 7px 12px;
         border: none;
-        border-radius: 4px;
+        border-radius: 6px;
         cursor: pointer;
-        font-weight: bold;
+        font-weight: 600;
         font-size: 12px;
         transition: 0.2s;
         text-decoration: none;
-        display: inline-block;
-        text-align: center;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
       }
-      .btn-drive { background-color: #ffbb24; color: #333; }
-      .btn-drive:hover { background-color: #e5a720; }
-      .btn-edit { background-color: #e0e0e0; color: #333; margin-left: 5px; }
-      .btn-edit:hover { background-color: #ccc; }
-      .btn-save { background-color: var(--upm-red); color: white; padding: 10px 20px; width: 100%; font-size: 14px; margin-top: 10px;}
+      .btn-view { background-color: var(--crm-blue); color: white; margin-right: 5px; }
+      .btn-view:hover { background-color: #00457a; }
+      .btn-drive { background-color: #f3f2f1; color: #323130; border: 1px solid #c8c6c4; margin-right: 5px; }
+      .btn-save { background-color: var(--upm-red); color: white; padding: 10px 20px; font-size: 14px; }
+      
+      .btn-load-more {
+        display: block;
+        margin: 0 auto 30px auto;
+        background: #eee;
+        color: #333;
+        padding: 10px 30px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .btn-load-more:hover { background: #ddd; }
 
-      /* Modal de Edición */
-      .modal-overlay {
-        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-        background: rgba(0, 0, 0, 0.6); display: none; justify-content: center;
-        align-items: center; z-index: 1000; backdrop-filter: blur(2px);
-      }
-      .modal {
-        background: #fff; padding: 25px 30px; border-radius: 8px;
-        width: 100%; max-width: 450px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-      }
-      .modal h2 { margin-top: 0; color: var(--upm-red); border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+      /* SIDEBAR CRM */
+      .crm-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.4); display: none; z-index: 999; backdrop-filter: blur(2px); transition: opacity 0.3s; }
+      .crm-sidebar { position: fixed; top: 0; right: -600px; width: 500px; max-width: 100vw; height: 100vh; background: #f8f9fa; box-shadow: -5px 0 25px rgba(0,0,0,0.1); z-index: 1000; transition: right 0.3s ease; display: flex; flex-direction: column; }
+      .crm-sidebar.active { right: 0; }
+      .crm-header { padding: 25px; background: #fff; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; justify-content: space-between; }
+      .crm-header-info { display: flex; align-items: center; gap: 15px; }
+      .crm-avatar { width: 50px; height: 50px; background: var(--upm-red); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold; }
+      .crm-title { margin: 0; font-size: 18px; color: #222; }
+      .crm-subtitle { margin: 5px 0 0 0; font-size: 12px; color: #777; }
+      .crm-close { background: none; border: none; font-size: 24px; color: #999; cursor: pointer; padding: 0; line-height: 1; }
+      .crm-body { padding: 20px 25px; flex-grow: 1; overflow-y: auto; }
+      .crm-section { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+      .crm-section h3 { margin: 0 0 15px 0; font-size: 14px; border-bottom: 1px solid #eee; padding-bottom: 10px; text-transform: uppercase; }
+      .crm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+      .crm-item { display: flex; flex-direction: column; }
+      .crm-item.full { grid-column: 1 / -1; }
+      .crm-label { font-size: 11px; color: #888; text-transform: uppercase; font-weight: 600; margin-bottom: 4px; }
+      .crm-val { font-size: 14px; color: #222; font-weight: 600; word-break: break-word; }
+      .crm-footer { padding: 15px 25px; background: #fff; border-top: 1px solid var(--border); display: flex; gap: 10px; }
+
+      /* MODAL AMPLIO (AGREGAR / EDITAR) */
+      .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center; z-index: 1001; padding: 20px; }
+      .modal { background: #fff; padding: 25px 30px; border-radius: 8px; width: 100%; max-width: 800px; max-height: 90vh; overflow-y: auto; }
+      .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border); padding-bottom: 10px; margin-bottom: 20px; }
+      .modal h2 { margin: 0; color: var(--upm-red); }
+      .form-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
       .form-group { margin-bottom: 15px; }
-      .form-group label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 13px; }
-      .form-group input, .form-group select { width: 100%; padding: 10px; box-sizing: border-box; border: 1px solid var(--border); border-radius: 4px; }
-      .close-btn { background: none; border: none; color: #999; float: right; font-size: 24px; cursor: pointer; margin-top: -5px; }
-      .close-btn:hover { color: #333; }
+      .form-group.full { grid-column: 1 / -1; }
+      .form-group label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 12px; color: #555; }
+      .form-group input, .form-group select { width: 100%; padding: 8px 10px; box-sizing: border-box; border: 1px solid var(--border); border-radius: 4px; font-family: inherit; font-size: 13px;}
+      .modal-footer { margin-top: 20px; border-top: 1px solid var(--border); padding-top: 15px; text-align: right; }
+
+      @media (max-width: 768px) {
+        .crm-sidebar { width: 100%; }
+        .crm-grid, .form-grid { grid-template-columns: 1fr; }
+      }
     </style>
   </head>
   <body>
     <div class="header">
-      <h1>Monitor de Registros - Educación Continua</h1>
-      <span id="contador" class="badge badge-blue">Sincronizando...</span>
+      <h1>Panel - Educación Continua</h1>
+      <span id="contador" class="badge badge-gray">Sincronizando...</span>
     </div>
 
-    <!-- Buscador y Filtros Dinámicos -->
+    <!-- Módulo de Análisis de Datos -->
+    <div class="metrics-container" id="metrics-module">
+      <div class="metric-card">
+        <div class="metric-title">Total Registros</div>
+        <div class="metric-value" id="metric-total">0</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-title">Expedientes Faltantes</div>
+        <div class="metric-value" id="metric-pendientes">0</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-title">Nuevos Ingresos</div>
+        <div class="metric-value" id="metric-nuevos">0</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-title">Reinscripciones</div>
+        <div class="metric-value" id="metric-reins">0</div>
+      </div>
+    </div>
+
+    <!-- Buscador y Controles -->
     <div class="toolbar">
-      <input type="text" id="searchInput" class="search-box" placeholder="Buscar por nombre, ID, matrícula, teléfono..." onkeyup="procesarFiltros()" />
-      
-      <select id="filterCurso" onchange="procesarFiltros()">
-        <option value="ALL">Todos los Cursos</option>
-      </select>
-
-      <select id="filterStatus" onchange="procesarFiltros()">
-        <option value="ALL">Todos los Estatus</option>
-      </select>
-
-      <select id="filterAsesor" onchange="procesarFiltros()">
-        <option value="ALL">Todos los Asesores</option>
-      </select>
+      <input type="text" id="searchInput" class="search-box" placeholder="Buscar alumno, ID, correo o teléfono..." onkeyup="procesarFiltros()" />
+      <select id="filterCurso" onchange="procesarFiltros()"><option value="ALL">Todos los Cursos</option></select>
+      <select id="filterStatus" onchange="procesarFiltros()"><option value="ALL">Todos los Estatus</option></select>
+      <button onclick="abrirModalFormulario('nuevo')" class="btn btn-save" style="margin:0; width:auto; white-space:nowrap;">+ Nuevo Registro</button>
     </div>
 
     <div class="table-container">
       <table>
         <thead>
           <tr>
-            <th onclick="cambiarOrden('idRegistro')">ID Solicitud <span class="sort-icon" id="sort-idRegistro"></span></th>
-            <th onclick="cambiarOrden('nombreCompleto')">Nombre del Alumno <span class="sort-icon" id="sort-nombreCompleto"></span></th>
-            <th onclick="cambiarOrden('matricula')">Estado Matrícula <span class="sort-icon" id="sort-matricula"></span></th>
-            <th onclick="cambiarOrden('curso')">Curso / Diplomado <span class="sort-icon" id="sort-curso"></span></th>
+            <th onclick="cambiarOrden('idRegistro')">ID <span class="sort-icon" id="sort-idRegistro"></span></th>
+            <th onclick="cambiarOrden('nombreCompleto')">Contacto <span class="sort-icon" id="sort-nombreCompleto"></span></th>
+            <th onclick="cambiarOrden('matricula')">Matrícula <span class="sort-icon" id="sort-matricula"></span></th>
+            <th onclick="cambiarOrden('curso')">Programa Académico <span class="sort-icon" id="sort-curso"></span></th>
             <th onclick="cambiarOrden('status')">Estatus <span class="sort-icon" id="sort-status"></span></th>
-            <th onclick="cambiarOrden('fecha')">Fecha Registro <span class="sort-icon" id="sort-fecha">▼</span></th>
-            <th onclick="cambiarOrden('asesor')">Asesor <span class="sort-icon" id="sort-asesor"></span></th>
+            <th onclick="cambiarOrden('fechaRegistro')">F. Formulario <span class="sort-icon" id="sort-fechaRegistro">▼</span></th>
+            <th onclick="cambiarOrden('fechaServo')">F. SERVO <span class="sort-icon" id="sort-fechaServo"></span></th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody id="tabla-body">
-          <tr><td colspan="8" style="text-align:center; padding: 30px; color:#666;">Cargando base de datos desde Sheets...</td></tr>
+          <tr><td colspan="8" style="text-align: center; padding: 30px; color: #666">Cargando base de datos...</td></tr>
         </tbody>
       </table>
     </div>
+    
+    <!-- Botón Cargar Más (Paginación de Bloques) -->
+    <button id="btn-load-more" class="btn btn-load-more" style="display:none;" onclick="cargarMasRegistros()">Mostrar más registros</button>
 
-    <!-- MODAL DE EDICIÓN MEJORADO -->
-    <div id="editModal" class="modal-overlay">
+    <!-- PANEL LATERAL TIPO CRM -->
+    <div class="crm-overlay" id="crmOverlay" onclick="cerrarSidebar()"></div>
+    <div class="crm-sidebar" id="crmSidebar">
+      <div class="crm-header">
+        <div class="crm-header-info">
+          <div class="crm-avatar" id="crm-avatar">A</div>
+          <div>
+            <h2 class="crm-title" id="crm-nombre">Nombre Alumno</h2>
+            <p class="crm-subtitle" id="crm-id-fecha">ID: 000 | Formulario: 00/00/0000</p>
+            <div style="margin-top: 5px" id="crm-badges"></div>
+          </div>
+        </div>
+        <button class="crm-close" onclick="cerrarSidebar()">×</button>
+      </div>
+      <div class="crm-body" id="crm-content"></div>
+      <div class="crm-footer" id="crm-footer"></div>
+    </div>
+
+    <!-- MODAL DE FORMULARIO COMPLETO (AGREGAR / EDITAR) -->
+    <div id="formModal" class="modal-overlay" onclick="cerrarModalExterno(event, 'formModal')">
       <div class="modal">
-        <button class="close-btn" onclick="cerrarModal()">×</button>
-        <h2>Editar Registro Alumno</h2>
-        <form id="editForm" onsubmit="guardarEdicion(event)">
-          <input type="hidden" id="edit-id" />
+        <div class="modal-header">
+          <h2 id="modal-titulo">Editar Registro</h2>
+          <button class="crm-close" onclick="cerrarModal('formModal')">×</button>
+        </div>
+        <form id="registroForm" onsubmit="guardarFormulario(event)">
+          <input type="hidden" id="f_action" value="update" />
+          
+          <div class="form-grid">
+            <div class="form-group">
+              <label>ID Registro (Solo lectura)</label>
+              <input type="text" id="f_idRegistro" disabled style="background:#eee;" placeholder="Auto-generado" />
+            </div>
+            <div class="form-group">
+              <label>Nombre Completo</label>
+              <input type="text" id="f_nombreCompleto" required />
+            </div>
+            <div class="form-group">
+              <label>Matrícula</label>
+              <input type="text" id="f_matricula" />
+            </div>
 
-          <div class="form-group">
-            <label>ID y Nombre (Solo lectura)</label>
-            <input type="text" id="edit-nombre" disabled style="background: #f0f0f0; color:#555;" />
+            <div class="form-group">
+              <label>Correo Electrónico</label>
+              <input type="email" id="f_correo" />
+            </div>
+            <div class="form-group">
+              <label>Teléfono</label>
+              <input type="text" id="f_telefono" />
+            </div>
+            <div class="form-group">
+              <label>Género</label>
+              <input type="text" id="f_genero" />
+            </div>
+
+            <div class="form-group full">
+              <label>Programa Académico (Curso)</label>
+              <input type="text" id="f_curso" required />
+            </div>
+
+            <div class="form-group">
+              <label>Estatus</label>
+              <select id="f_status">
+                <option value="Nuevo Ingreso">Nuevo Ingreso</option>
+                <option value="Reinscripción">Reinscripción</option>
+                <option value="Baja">Baja</option>
+                <option value="Egresado">Egresado</option>
+                <option value="Prospecto">Prospecto</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Monto a Pagar</label>
+              <input type="text" id="f_montoAPagar" />
+            </div>
+            <div class="form-group">
+              <label>Pagado (Sí/No/Monto)</label>
+              <input type="text" id="f_pagado" />
+            </div>
+
+            <div class="form-group">
+              <label>Fecha Formulario</label>
+              <input type="text" id="f_fechaRegistro" placeholder="DD/MM/AAAA" />
+            </div>
+            <div class="form-group">
+              <label>Fecha Ingreso SERVO</label>
+              <input type="text" id="f_fechaServo" placeholder="DD/MM/AAAA" />
+            </div>
+            <div class="form-group">
+              <label>Asesor Asignado</label>
+              <input type="text" id="f_asesor" />
+            </div>
+
+            <div class="form-group full">
+              <label>Enlace Expediente Drive</label>
+              <input type="url" id="f_urlExpediente" placeholder="https://drive.google.com/..." />
+            </div>
           </div>
 
-          <div class="form-group">
-            <label>Matrícula Oficial</label>
-            <input type="text" id="edit-matricula" placeholder="Ej. 20261020 o dejar vacío" />
+          <div class="modal-footer">
+            <button type="button" class="btn btn-drive" onclick="cerrarModal('formModal')">Cancelar</button>
+            <button type="submit" id="btn-submit-form" class="btn btn-save" style="width:auto;">Guardar Registro</button>
           </div>
-
-          <div class="form-group">
-            <label>Estatus de Ingreso</label>
-            <select id="edit-status">
-              <option value="Nuevo Ingreso">Nuevo Ingreso</option>
-              <option value="Reinscripción">Reinscripción</option>
-              <!-- Puedes agregar más si tu universidad maneja Bajas, Egresados, etc. -->
-            </select>
-          </div>
-
-          <button type="submit" id="btn-submit-edit" class="btn btn-save">Guardar Cambios</button>
         </form>
       </div>
     </div>
 
     <script>
-      const API_URL = "https://script.google.com/macros/s/AKfycbzjc0VvXZ42h4JcJyAnWm0hnqM115AJsb8oFGe2d6n4ss9YBKDBtH8HNmC0c0TZU7KCsQ/exec";
-      
-      let dataGlobal = [];
-      let currentSortColumn = 'fecha';
-      let currentSortAsc = false; // Falso = los más recientes primero
+      // ⚠️ REEMPLAZA ESTO CON LA URL DE TU SCRIPT PUBLICADO COMO WEB APP
+      const API_URL = "https://script.google.com/macros/s/AKfycbxknCbQUxSjbsw9rym-n0ng2cWa_xqb9Ze3XF5rflNSKDzRvTdyrAcjn7skzjC8AS5vIg/exec";
 
-      // 1. Cargar Datos
+      let dataGlobal = [];
+      let datosFiltrados = [];
+      let currentSortColumn = "fechaRegistro";
+      let currentSortAsc = false;
+      
+      // Variables para paginación (Carga en Bloques)
+      let itemsPorPagina = 50;
+      let paginaActual = 1;
+
       function cargarDatos() {
+        document.getElementById("contador").innerHTML = `<span class="badge badge-yellow">Descargando...</span>`;
         fetch(API_URL)
-          .then(res => res.json())
-          .then(json => {
+          .then((res) => res.json())
+          .then((json) => {
             if (json.status === "success") {
               dataGlobal = json.data;
               generarFiltrosDinamicos(dataGlobal);
               procesarFiltros();
             }
           })
-          .catch(err => {
-            document.getElementById("tabla-body").innerHTML = `<tr><td colspan="8" style="text-align:center; color:red; padding:20px;">Error de conexión. Revisa tu red o el App Script.</td></tr>`;
+          .catch(() => {
+            document.getElementById("tabla-body").innerHTML = `<tr><td colspan="8" style="text-align:center; color:red; padding:20px;">Error de conexión con Google Sheets.</td></tr>`;
           });
       }
 
-      // 2. Poblar los <select> automáticamente
       function generarFiltrosDinamicos(datos) {
-        const cursos = new Set(), estatus = new Set(), asesores = new Set();
-        
-        datos.forEach(a => {
-          if(a.curso) cursos.add(a.curso.trim());
-          if(a.status) estatus.add(a.status.trim());
-          if(a.asesor) asesores.add(a.asesor.trim());
+        const cursos = new Set(), estatus = new Set();
+        datos.forEach((a) => {
+          if (a.curso) cursos.add(a.curso.trim());
+          if (a.status) estatus.add(a.status.trim());
         });
-
-        llenarSelect('filterCurso', cursos, 'Todos los Cursos');
-        llenarSelect('filterStatus', estatus, 'Todos los Estatus');
-        llenarSelect('filterAsesor', asesores, 'Todos los Asesores');
+        llenarSelect("filterCurso", cursos, "Todos los Cursos");
+        llenarSelect("filterStatus", estatus, "Todos los Estatus");
       }
 
       function llenarSelect(id, setDatos, textoDefault) {
         const select = document.getElementById(id);
         select.innerHTML = `<option value="ALL">${textoDefault}</option>`;
-        Array.from(setDatos).sort().forEach(item => {
-          if(item) select.innerHTML += `<option value="${item}">${item}</option>`;
+        Array.from(setDatos).sort().forEach((item) => {
+          if (item) select.innerHTML += `<option value="${item}">${item}</option>`;
         });
       }
 
-      // 3. Normalizador para Búsqueda (Quita acentos y pasa a minúsculas)
       function normalizar(texto) {
         if (!texto) return "";
         return String(texto).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
       }
 
-      // 4. Lógica Maestra de Filtrado y Ordenamiento
       function procesarFiltros() {
         const txtBuscar = normalizar(document.getElementById("searchInput").value);
-        const terminosBusqueda = txtBuscar.split(" ").filter(t => t.length > 0);
-        
+        const terminosBusqueda = txtBuscar.split(" ").filter((t) => t.length > 0);
         const fCurso = document.getElementById("filterCurso").value;
         const fStatus = document.getElementById("filterStatus").value;
-        const fAsesor = document.getElementById("filterAsesor").value;
 
-        // A) Filtrar
-        let filtrados = dataGlobal.filter(a => {
-          // Evaluar Selects
-          const pasaCurso = (fCurso === "ALL" || String(a.curso).trim() === fCurso);
-          const pasaStatus = (fStatus === "ALL" || String(a.status).trim() === fStatus);
-          const pasaAsesor = (fAsesor === "ALL" || String(a.asesor).trim() === fAsesor);
-
-          // Evaluar Búsqueda Avanzada (Busca en cualquier propiedad)
-          let cadenaTotal = normalizar(`${a.nombreCompleto} ${a.idRegistro} ${a.matricula} ${a.curso} ${a.asesor}`);
-          const pasaTexto = terminosBusqueda.every(termino => cadenaTotal.includes(termino));
-
-          return pasaCurso && pasaStatus && pasaAsesor && pasaTexto;
+        datosFiltrados = dataGlobal.filter((a) => {
+          const pasaCurso = fCurso === "ALL" || String(a.curso).trim() === fCurso;
+          const pasaStatus = fStatus === "ALL" || String(a.status).trim() === fStatus;
+          const cadenaTotal = normalizar(Object.values(a).join(" "));
+          const pasaTexto = terminosBusqueda.every((termino) => cadenaTotal.includes(termino));
+          return pasaCurso && pasaStatus && pasaTexto;
         });
 
-        // B) Ordenar
-        filtrados.sort((a, b) => {
+        datosFiltrados.sort((a, b) => {
           let valA = String(a[currentSortColumn] || "").toLowerCase();
           let valB = String(b[currentSortColumn] || "").toLowerCase();
           if (valA < valB) return currentSortAsc ? -1 : 1;
@@ -315,108 +459,210 @@
           return 0;
         });
 
-        // C) Renderizar
-        renderizarTabla(filtrados);
+        actualizarMetricas(datosFiltrados);
+        
+        // Reiniciar la paginación al filtrar
+        paginaActual = 1;
+        document.getElementById("tabla-body").innerHTML = ""; // Limpiar tabla
+        renderizarBloqueTabla();
         actualizarIconosOrden();
       }
 
-      // 5. Renderizador de Tabla
-      function renderizarTabla(datos) {
-        const tbody = document.getElementById("tabla-body");
-        tbody.innerHTML = "";
-        
-        // Contadores
-        let sinArchivosCount = datos.filter(a => !a.urlExpediente || String(a.urlExpediente).trim() === "").length;
-        document.getElementById("contador").innerHTML = `Registros: <strong>${datos.length}</strong> | Pendientes: <strong style="color:var(--upm-red);">${sinArchivosCount}</strong>`;
+      function actualizarMetricas(datos) {
+        document.getElementById("metric-total").innerText = datos.length;
+        document.getElementById("metric-pendientes").innerText = datos.filter(a => !a.urlExpediente || String(a.urlExpediente).trim() === "").length;
+        document.getElementById("metric-nuevos").innerText = datos.filter(a => String(a.status).toLowerCase().includes("nuevo")).length;
+        document.getElementById("metric-reins").innerText = datos.filter(a => String(a.status).toLowerCase().includes("reinscripci")).length;
+      }
 
-        if (datos.length === 0) {
-          tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding:30px; color:#666;">No se encontraron registros con esos filtros.</td></tr>`;
+      function renderizarBloqueTabla() {
+        const tbody = document.getElementById("tabla-body");
+        document.getElementById("contador").innerHTML = `<span class="badge badge-green">En línea</span>`;
+
+        if (datosFiltrados.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding:30px; color:#666;">No se encontraron registros.</td></tr>`;
+          document.getElementById("btn-load-more").style.display = "none";
           return;
         }
 
-        datos.forEach(alumno => {
+        const inicio = (paginaActual - 1) * itemsPorPagina;
+        const fin = inicio + itemsPorPagina;
+        const bloqueDatos = datosFiltrados.slice(inicio, fin);
+
+        bloqueDatos.forEach((alumno) => {
           let matStr = alumno.matricula ? String(alumno.matricula).trim() : "";
-          let tieneMat = matStr !== "" && normalizar(matStr) !== "no matriculado";
-          let semaforoMatricula = tieneMat ? `<span class="badge badge-green">${matStr}</span>` : `<span class="badge badge-yellow">Pendiente</span>`;
-
-          // Lógica "Sin Archivos"
-          let tieneArchivos = alumno.urlExpediente && String(alumno.urlExpediente).trim() !== "";
-          let claseFila = tieneArchivos ? "" : "row-missing-files";
+          let semaforoMatricula = matStr && normalizar(matStr) !== "no matriculado"
+            ? `<span class="badge badge-green">${matStr}</span>`
+            : `<span class="badge badge-yellow">Pendiente</span>`;
+          let claseFila = alumno.urlExpediente && String(alumno.urlExpediente).trim() !== "" ? "" : "row-missing-files";
           
-          let botonDrive = tieneArchivos 
-            ? `<a href="${alumno.urlExpediente}" target="_blank" class="btn btn-drive">Drive</a>` 
-            : `<button class="btn btn-missing" disabled>Faltan Archivos</button>`;
-
-          let botonEditar = `<button class="btn btn-edit" onclick='abrirModal(${JSON.stringify(alumno)})'>Editar</button>`;
+          let btnPerfil = `<button class="btn btn-view" onclick="abrirPerfilCRM('${alumno.idRegistro}')">Perfil</button>`;
+          let btnEdit = `<button class="btn btn-view" style="background:var(--upm-gold); color:black;" onclick="abrirModalFormulario('editar', '${alumno.idRegistro}')">Editar</button>`;
 
           tbody.innerHTML += `
             <tr class="${claseFila}">
-              <td style="color:#555; font-size:11px; font-weight:bold;">${alumno.idRegistro}</td>
-              <td><strong>${alumno.nombreCompleto}</strong></td>
+              <td style="color:#888; font-size:11px; font-weight:700;">${alumno.idRegistro}</td>
+              <td>
+                <div style="font-weight:600; color:var(--crm-blue);">${alumno.nombreCompleto}</div>
+                <div style="font-size:11px; color:#777;">${alumno.correo || "Sin correo"}</div>
+              </td>
               <td>${semaforoMatricula}</td>
               <td style="font-size:12px;">${alumno.curso}</td>
               <td><span class="badge badge-blue">${alumno.status}</span></td>
-              <td style="color:#666; font-size:11px;">${alumno.fecha}</td>
-              <td style="font-size:12px;">${alumno.asesor}</td>
-              <td style="white-space:nowrap;">${botonDrive} ${botonEditar}</td>
+              <td style="color:#666; font-size:11px;">${alumno.fechaRegistro || "-"}</td>
+              <td style="color:#666; font-size:11px;"><strong>${alumno.fechaServo || "-"}</strong></td>
+              <td style="white-space:nowrap;">${btnPerfil} ${btnEdit}</td>
             </tr>
           `;
         });
+
+        // Mostrar u ocultar botón de Cargar Más
+        if (fin < datosFiltrados.length) {
+          document.getElementById("btn-load-more").style.display = "block";
+        } else {
+          document.getElementById("btn-load-more").style.display = "none";
+        }
       }
 
-      // 6. Ordenamiento de Cabeceras
+      function cargarMasRegistros() {
+        paginaActual++;
+        renderizarBloqueTabla();
+      }
+
       function cambiarOrden(columna) {
-        if (currentSortColumn === columna) {
-          currentSortAsc = !currentSortAsc; // Invertir orden si es la misma
-        } else {
-          currentSortColumn = columna;
-          currentSortAsc = true; // Por defecto ascendente al cambiar columna
-        }
+        if (currentSortColumn === columna) currentSortAsc = !currentSortAsc;
+        else { currentSortColumn = columna; currentSortAsc = true; }
         procesarFiltros();
       }
 
       function actualizarIconosOrden() {
-        document.querySelectorAll('.sort-icon').forEach(el => el.innerText = "");
+        document.querySelectorAll(".sort-icon").forEach((el) => (el.innerText = ""));
         const iconoActivo = document.getElementById(`sort-${currentSortColumn}`);
-        if(iconoActivo) {
-          iconoActivo.innerText = currentSortAsc ? "▲" : "▼";
-        }
+        if (iconoActivo) iconoActivo.innerText = currentSortAsc ? "▲" : "▼";
       }
 
-      // 7. Modal de Edición
-      function abrirModal(alumno) {
-        document.getElementById("edit-id").value = alumno.idRegistro;
-        document.getElementById("edit-nombre").value = `[${alumno.idRegistro}] ${alumno.nombreCompleto}`;
-        
-        let matStr = alumno.matricula ? String(alumno.matricula).trim() : "";
-        document.getElementById("edit-matricula").value = normalizar(matStr) === "no matriculado" ? "" : matStr;
-        
-        // Evitar que el select se rompa si el status no existe en las opciones predefinidas
-        let selStatus = document.getElementById("edit-status");
-        if(!Array.from(selStatus.options).some(opt => opt.value === alumno.status)) {
+      function abrirPerfilCRM(idRegistro) {
+        const alumno = dataGlobal.find((a) => String(a.idRegistro) === String(idRegistro));
+        if (!alumno) return;
+        const inicial = alumno.nombreCompleto ? alumno.nombreCompleto.charAt(0).toUpperCase() : "A";
+        document.getElementById("crm-avatar").innerText = inicial;
+        document.getElementById("crm-nombre").innerText = alumno.nombreCompleto || "Sin Nombre";
+        document.getElementById("crm-id-fecha").innerText = `ID: ${alumno.idRegistro} | Formulario: ${alumno.fechaRegistro || '-'}`;
+        let badgesHTML = `<span class="badge badge-blue">${alumno.status || "Sin estatus"}</span> `;
+        let mat = normalizar(alumno.matricula);
+        if (mat && mat !== "no matriculado") badgesHTML += `<span class="badge badge-gray">Mat: ${alumno.matricula}</span>`;
+        document.getElementById("crm-badges").innerHTML = badgesHTML;
+        const val = (v) => v ? v : '<span style="color:#bbb; font-weight:normal;">N/A</span>';
+
+        let htmlBody = `
+          <div class="crm-section">
+            <h3>Información de Contacto e Identidad</h3>
+            <div class="crm-grid">
+              <div class="crm-item"><span class="crm-label">Correo Electrónico</span><span class="crm-val">${val(alumno.correo)}</span></div>
+              <div class="crm-item"><span class="crm-label">Teléfono</span><span class="crm-val">${val(alumno.telefono)}</span></div>
+              <div class="crm-item"><span class="crm-label">Género</span><span class="crm-val">${val(alumno.genero)}</span></div>
+            </div>
+          </div>
+          <div class="crm-section">
+            <h3>Perfil Académico</h3>
+            <div class="crm-grid">
+              <div class="crm-item full"><span class="crm-label">Programa Solicitado</span><span class="crm-val" style="color:var(--crm-blue); font-size:15px;">${val(alumno.curso)}</span></div>
+            </div>
+          </div>
+          <div class="crm-section">
+            <h3>Gestión Interna y Fechas</h3>
+            <div class="crm-grid">
+              <div class="crm-item"><span class="crm-label">Asesor Asignado</span><span class="crm-val">${val(alumno.asesor)}</span></div>
+              <div class="crm-item"><span class="crm-label">Pagado Final</span><span class="crm-val" style="color:var(--upm-red);">${val(alumno.pagado)}</span></div>
+              <div class="crm-item"><span class="crm-label">Fecha Formulario</span><span class="crm-val">${val(alumno.fechaRegistro)}</span></div>
+              <div class="crm-item"><span class="crm-label" style="color:var(--upm-red);">Fecha Ingreso SERVO</span><span class="crm-val">${val(alumno.fechaServo)}</span></div>
+            </div>
+          </div>
+        `;
+        document.getElementById("crm-content").innerHTML = htmlBody;
+
+        let btnDrive = alumno.urlExpediente && String(alumno.urlExpediente).trim() !== ""
+            ? `<a href="${alumno.urlExpediente}" target="_blank" class="btn btn-drive" style="background:#0f9d58; color:white; border:none;">Expediente Drive</a>`
+            : `<button class="btn btn-missing" disabled>Expediente Faltante</button>`;
+
+        let btnEdit = `<button class="btn btn-view" style="background:var(--upm-gold); color:black;" onclick="abrirModalFormulario('editar', '${alumno.idRegistro}')">Editar Todo</button>`;
+
+        document.getElementById("crm-footer").innerHTML = `${btnDrive} ${btnEdit}`;
+        document.getElementById("crmOverlay").style.display = "block";
+        setTimeout(() => { document.getElementById("crmSidebar").classList.add("active"); }, 10);
+      }
+
+      function cerrarSidebar() {
+        document.getElementById("crmSidebar").classList.remove("active");
+        setTimeout(() => { document.getElementById("crmOverlay").style.display = "none"; }, 300);
+      }
+
+      /* Función que maneja tanto Agregar (nuevo) como Editar */
+      function abrirModalFormulario(modo, idRegistro = null) {
+        cerrarSidebar();
+        document.getElementById("registroForm").reset();
+
+        if (modo === 'nuevo') {
+          document.getElementById("modal-titulo").innerText = "Agregar Nuevo Registro";
+          document.getElementById("f_action").value = "add";
+          document.getElementById("f_idRegistro").value = "";
+          // Opción extra para status
+          let selStatus = document.getElementById("f_status");
+          selStatus.value = "Nuevo Ingreso";
+        } else if (modo === 'editar') {
+          document.getElementById("modal-titulo").innerText = "Editar Registro Completo";
+          document.getElementById("f_action").value = "update";
+          
+          const alumno = dataGlobal.find((a) => String(a.idRegistro) === String(idRegistro));
+          if (!alumno) return;
+
+          document.getElementById("f_idRegistro").value = alumno.idRegistro || "";
+          document.getElementById("f_nombreCompleto").value = alumno.nombreCompleto || "";
+          document.getElementById("f_matricula").value = normalizar(alumno.matricula) === "no matriculado" ? "" : alumno.matricula;
+          document.getElementById("f_correo").value = alumno.correo || "";
+          document.getElementById("f_telefono").value = alumno.telefono || "";
+          document.getElementById("f_genero").value = alumno.genero || "";
+          document.getElementById("f_curso").value = alumno.curso || "";
+          document.getElementById("f_montoAPagar").value = alumno.montoAPagar || "";
+          document.getElementById("f_pagado").value = alumno.pagado || "";
+          document.getElementById("f_fechaRegistro").value = alumno.fechaRegistro || "";
+          document.getElementById("f_fechaServo").value = alumno.fechaServo || "";
+          document.getElementById("f_asesor").value = alumno.asesor || "";
+          document.getElementById("f_urlExpediente").value = alumno.urlExpediente || "";
+
+          let selStatus = document.getElementById("f_status");
+          if (!Array.from(selStatus.options).some((opt) => opt.value === alumno.status)) {
             selStatus.innerHTML += `<option value="${alumno.status}">${alumno.status}</option>`;
+          }
+          selStatus.value = alumno.status;
         }
-        selStatus.value = alumno.status;
-
-        document.getElementById("editModal").style.display = "flex";
+        document.getElementById("formModal").style.display = "flex";
       }
 
-      function cerrarModal() {
-        document.getElementById("editModal").style.display = "none";
-      }
+      function cerrarModal(modalId) { document.getElementById(modalId).style.display = "none"; }
+      function cerrarModalExterno(event, modalId) { if (event.target.id === modalId) cerrarModal(modalId); }
 
-      // 8. Guardar Edición (Backend)
-      function guardarEdicion(e) {
+      function guardarFormulario(e) {
         e.preventDefault();
-        const btn = document.getElementById("btn-submit-edit");
-        btn.innerText = "Guardando...";
-        btn.disabled = true;
+        const btn = document.getElementById("btn-submit-form");
+        btn.innerText = "Guardando..."; btn.disabled = true;
 
         const payload = {
-          action: "update",
-          idRegistro: document.getElementById("edit-id").value,
-          matricula: document.getElementById("edit-matricula").value || "No Matriculado",
-          status: document.getElementById("edit-status").value,
+          action: document.getElementById("f_action").value,
+          idRegistro: document.getElementById("f_idRegistro").value,
+          nombreCompleto: document.getElementById("f_nombreCompleto").value,
+          matricula: document.getElementById("f_matricula").value || "No Matriculado",
+          correo: document.getElementById("f_correo").value,
+          telefono: document.getElementById("f_telefono").value,
+          genero: document.getElementById("f_genero").value,
+          curso: document.getElementById("f_curso").value,
+          status: document.getElementById("f_status").value,
+          montoAPagar: document.getElementById("f_montoAPagar").value,
+          pagado: document.getElementById("f_pagado").value,
+          fechaRegistro: document.getElementById("f_fechaRegistro").value,
+          fechaServo: document.getElementById("f_fechaServo").value,
+          asesor: document.getElementById("f_asesor").value,
+          urlExpediente: document.getElementById("f_urlExpediente").value
         };
 
         fetch(API_URL, {
@@ -424,23 +670,22 @@
           headers: { "Content-Type": "text/plain;charset=utf-8" },
           body: JSON.stringify(payload),
         })
-        .then(res => res.json())
-        .then(response => {
-          if (response.status === "success") {
-            cerrarModal();
-            cargarDatos(); // Refresca toda la tabla
-          } else {
-            alert("Error del servidor: " + response.message);
-          }
-        })
-        .catch(err => alert("Ocurrió un error de red al intentar guardar."))
-        .finally(() => {
-          btn.innerText = "Guardar Cambios";
-          btn.disabled = false;
-        });
+          .then((res) => res.json())
+          .then((response) => {
+            if (response.status === "success") {
+              cerrarModal("formModal");
+              cargarDatos(); // Recargar todos los datos para ver los cambios
+            } else {
+              alert("Error: " + response.message);
+            }
+          })
+          .catch(() => alert("Ocurrió un error de red."))
+          .finally(() => {
+            btn.innerText = "Guardar Registro";
+            btn.disabled = false;
+          });
       }
 
-      // Iniciar App
       cargarDatos();
     </script>
   </body>
