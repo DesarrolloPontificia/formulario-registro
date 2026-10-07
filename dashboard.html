@@ -6,7 +6,10 @@
     <title>Alumnos - Educación Continua UPM</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       :root {
         --upm-red: #9a2643;
@@ -138,8 +141,12 @@
         font-size: 13px;
         vertical-align: middle;
       }
-      tr:hover { background-color: #f7f9fc; }
-      tr.row-missing-files { border-left: 4px solid #ff4d4d; }
+      tr:hover {
+        background-color: #f7f9fc;
+      }
+      tr.row-missing-files {
+        border-left: 4px solid #ff4d4d;
+      }
 
       .badge {
         padding: 5px 10px;
@@ -149,10 +156,22 @@
         display: inline-block;
         white-space: nowrap;
       }
-      .badge-green { background-color: #e3fbed; color: #107c41; }
-      .badge-yellow { background-color: #fff4ce; color: #ffbb24; }
-      .badge-blue { background-color: #e1f0fa; color: #005a9e; }
-      .badge-gray { background-color: #f0f0f0; color: #666666; }
+      .badge-green {
+        background-color: #e3fbed;
+        color: #107c41;
+      }
+      .badge-yellow {
+        background-color: #fff4ce;
+        color: #ffbb24;
+      }
+      .badge-blue {
+        background-color: #e1f0fa;
+        color: #005a9e;
+      }
+      .badge-gray {
+        background-color: #f0f0f0;
+        color: #666666;
+      }
 
       .btn {
         padding: 7px 12px;
@@ -167,11 +186,27 @@
         align-items: center;
         justify-content: center;
       }
-      .btn-view { background-color: var(--crm-blue); color: white; margin-right: 5px; }
-      .btn-view:hover { background-color: #00457a; }
-      .btn-drive { background-color: #f3f2f1; color: #323130; border: 1px solid #c8c6c4; margin-right: 5px; }
-      .btn-save { background-color: var(--upm-red); color: white; padding: 10px 20px; font-size: 14px; }
-      
+      .btn-view {
+        background-color: var(--crm-blue);
+        color: white;
+        margin-right: 5px;
+      }
+      .btn-view:hover {
+        background-color: #00457a;
+      }
+      .btn-drive {
+        background-color: #f3f2f1;
+        color: #323130;
+        border: 1px solid #c8c6c4;
+        margin-right: 5px;
+      }
+      .btn-save {
+        background-color: var(--upm-red);
+        color: white;
+        padding: 10px 20px;
+        font-size: 14px;
+      }
+
       .btn-load-more {
         display: block;
         margin: 0 auto 30px auto;
@@ -182,43 +217,215 @@
         font-size: 14px;
         font-weight: 600;
       }
-      .btn-load-more:hover { background: #ddd; }
+      .btn-load-more:hover {
+        background: #ddd;
+      }
 
       /* SIDEBAR CRM */
-      .crm-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.4); display: none; z-index: 999; backdrop-filter: blur(2px); transition: opacity 0.3s; }
-      .crm-sidebar { position: fixed; top: 0; right: -600px; width: 500px; max-width: 100vw; height: 100vh; background: #f8f9fa; box-shadow: -5px 0 25px rgba(0,0,0,0.1); z-index: 1000; transition: right 0.3s ease; display: flex; flex-direction: column; }
-      .crm-sidebar.active { right: 0; }
-      .crm-header { padding: 25px; background: #fff; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; justify-content: space-between; }
-      .crm-header-info { display: flex; align-items: center; gap: 15px; }
-      .crm-avatar { width: 50px; height: 50px; background: var(--upm-red); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold; }
-      .crm-title { margin: 0; font-size: 18px; color: #222; }
-      .crm-subtitle { margin: 5px 0 0 0; font-size: 12px; color: #777; }
-      .crm-close { background: none; border: none; font-size: 24px; color: #999; cursor: pointer; padding: 0; line-height: 1; }
-      .crm-body { padding: 20px 25px; flex-grow: 1; overflow-y: auto; }
-      .crm-section { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
-      .crm-section h3 { margin: 0 0 15px 0; font-size: 14px; border-bottom: 1px solid #eee; padding-bottom: 10px; text-transform: uppercase; }
-      .crm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-      .crm-item { display: flex; flex-direction: column; }
-      .crm-item.full { grid-column: 1 / -1; }
-      .crm-label { font-size: 11px; color: #888; text-transform: uppercase; font-weight: 600; margin-bottom: 4px; }
-      .crm-val { font-size: 14px; color: #222; font-weight: 600; word-break: break-word; }
-      .crm-footer { padding: 15px 25px; background: #fff; border-top: 1px solid var(--border); display: flex; gap: 10px; }
+      .crm-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+        display: none;
+        z-index: 999;
+        backdrop-filter: blur(2px);
+        transition: opacity 0.3s;
+      }
+      .crm-sidebar {
+        position: fixed;
+        top: 0;
+        right: -600px;
+        width: 500px;
+        max-width: 100vw;
+        height: 100vh;
+        background: #f8f9fa;
+        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        transition: right 0.3s ease;
+        display: flex;
+        flex-direction: column;
+      }
+      .crm-sidebar.active {
+        right: 0;
+      }
+      .crm-header {
+        padding: 25px;
+        background: #fff;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+      }
+      .crm-header-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .crm-avatar {
+        width: 50px;
+        height: 50px;
+        background: var(--upm-red);
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .crm-title {
+        margin: 0;
+        font-size: 18px;
+        color: #222;
+      }
+      .crm-subtitle {
+        margin: 5px 0 0 0;
+        font-size: 12px;
+        color: #777;
+      }
+      .crm-close {
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: #999;
+        cursor: pointer;
+        padding: 0;
+        line-height: 1;
+      }
+      .crm-body {
+        padding: 20px 25px;
+        flex-grow: 1;
+        overflow-y: auto;
+      }
+      .crm-section {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+      }
+      .crm-section h3 {
+        margin: 0 0 15px 0;
+        font-size: 14px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+        text-transform: uppercase;
+      }
+      .crm-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+      .crm-item {
+        display: flex;
+        flex-direction: column;
+      }
+      .crm-item.full {
+        grid-column: 1 / -1;
+      }
+      .crm-label {
+        font-size: 11px;
+        color: #888;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+      .crm-val {
+        font-size: 14px;
+        color: #222;
+        font-weight: 600;
+        word-break: break-word;
+      }
+      .crm-footer {
+        padding: 15px 25px;
+        background: #fff;
+        border-top: 1px solid var(--border);
+        display: flex;
+        gap: 10px;
+      }
 
       /* MODAL AMPLIO (AGREGAR / EDITAR) */
-      .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center; z-index: 1001; padding: 20px; }
-      .modal { background: #fff; padding: 25px 30px; border-radius: 8px; width: 100%; max-width: 800px; max-height: 90vh; overflow-y: auto; }
-      .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border); padding-bottom: 10px; margin-bottom: 20px; }
-      .modal h2 { margin: 0; color: var(--upm-red); }
-      .form-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
-      .form-group { margin-bottom: 15px; }
-      .form-group.full { grid-column: 1 / -1; }
-      .form-group label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 12px; color: #555; }
-      .form-group input, .form-group select { width: 100%; padding: 8px 10px; box-sizing: border-box; border: 1px solid var(--border); border-radius: 4px; font-family: inherit; font-size: 13px;}
-      .modal-footer { margin-top: 20px; border-top: 1px solid var(--border); padding-top: 15px; text-align: right; }
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1001;
+        padding: 20px;
+      }
+      .modal {
+        background: #fff;
+        padding: 25px 30px;
+        border-radius: 8px;
+        width: 100%;
+        max-width: 800px;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid var(--border);
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+      }
+      .modal h2 {
+        margin: 0;
+        color: var(--upm-red);
+      }
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 15px;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      .form-group.full {
+        grid-column: 1 / -1;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 600;
+        font-size: 12px;
+        color: #555;
+      }
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 8px 10px;
+        box-sizing: border-box;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        font-family: inherit;
+        font-size: 13px;
+      }
+      .modal-footer {
+        margin-top: 20px;
+        border-top: 1px solid var(--border);
+        padding-top: 15px;
+        text-align: right;
+      }
 
       @media (max-width: 768px) {
-        .crm-sidebar { width: 100%; }
-        .crm-grid, .form-grid { grid-template-columns: 1fr; }
+        .crm-sidebar {
+          width: 100%;
+        }
+        .crm-grid,
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>
@@ -250,34 +457,79 @@
 
     <!-- Buscador y Controles -->
     <div class="toolbar">
-      <input type="text" id="searchInput" class="search-box" placeholder="Buscar alumno, ID, correo o teléfono..." onkeyup="procesarFiltros()" />
-      <select id="filterCurso" onchange="procesarFiltros()"><option value="ALL">Todos los Cursos</option></select>
-      <select id="filterStatus" onchange="procesarFiltros()"><option value="ALL">Todos los Estatus</option></select>
-      <button onclick="abrirModalFormulario('nuevo')" class="btn btn-save" style="margin:0; width:auto; white-space:nowrap;">+ Nuevo Registro</button>
+      <input
+        type="text"
+        id="searchInput"
+        class="search-box"
+        placeholder="Buscar alumno, ID, correo o teléfono..."
+        onkeyup="procesarFiltros()"
+      />
+      <select id="filterCurso" onchange="procesarFiltros()">
+        <option value="ALL">Todos los Cursos</option>
+      </select>
+      <select id="filterStatus" onchange="procesarFiltros()">
+        <option value="ALL">Todos los Estatus</option>
+      </select>
+      <button
+        onclick="abrirModalFormulario('nuevo')"
+        class="btn btn-save"
+        style="margin: 0; width: auto; white-space: nowrap"
+      >
+        + Nuevo Registro
+      </button>
     </div>
 
     <div class="table-container">
       <table>
         <thead>
           <tr>
-            <th onclick="cambiarOrden('idRegistro')">ID <span class="sort-icon" id="sort-idRegistro"></span></th>
-            <th onclick="cambiarOrden('nombreCompleto')">Contacto <span class="sort-icon" id="sort-nombreCompleto"></span></th>
-            <th onclick="cambiarOrden('matricula')">Matrícula <span class="sort-icon" id="sort-matricula"></span></th>
-            <th onclick="cambiarOrden('curso')">Programa Académico <span class="sort-icon" id="sort-curso"></span></th>
-            <th onclick="cambiarOrden('status')">Estatus <span class="sort-icon" id="sort-status"></span></th>
-            <th onclick="cambiarOrden('fechaRegistro')">F. Formulario <span class="sort-icon" id="sort-fechaRegistro">▼</span></th>
-            <th onclick="cambiarOrden('fechaServo')">F. SERVO <span class="sort-icon" id="sort-fechaServo"></span></th>
+            <th onclick="cambiarOrden('idRegistro')">
+              ID <span class="sort-icon" id="sort-idRegistro"></span>
+            </th>
+            <th onclick="cambiarOrden('nombreCompleto')">
+              Contacto <span class="sort-icon" id="sort-nombreCompleto"></span>
+            </th>
+            <th onclick="cambiarOrden('matricula')">
+              Matrícula <span class="sort-icon" id="sort-matricula"></span>
+            </th>
+            <th onclick="cambiarOrden('curso')">
+              Programa Académico <span class="sort-icon" id="sort-curso"></span>
+            </th>
+            <th onclick="cambiarOrden('status')">
+              Estatus <span class="sort-icon" id="sort-status"></span>
+            </th>
+            <th onclick="cambiarOrden('fechaRegistro')">
+              F. Formulario
+              <span class="sort-icon" id="sort-fechaRegistro">▼</span>
+            </th>
+            <th onclick="cambiarOrden('fechaServo')">
+              F. SERVO <span class="sort-icon" id="sort-fechaServo"></span>
+            </th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody id="tabla-body">
-          <tr><td colspan="8" style="text-align: center; padding: 30px; color: #666">Cargando base de datos...</td></tr>
+          <tr>
+            <td
+              colspan="8"
+              style="text-align: center; padding: 30px; color: #666"
+            >
+              Cargando base de datos...
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
-    
+
     <!-- Botón Cargar Más (Paginación de Bloques) -->
-    <button id="btn-load-more" class="btn btn-load-more" style="display:none;" onclick="cargarMasRegistros()">Mostrar más registros</button>
+    <button
+      id="btn-load-more"
+      class="btn btn-load-more"
+      style="display: none"
+      onclick="cargarMasRegistros()"
+    >
+      Mostrar más registros
+    </button>
 
     <!-- PANEL LATERAL TIPO CRM -->
     <div class="crm-overlay" id="crmOverlay" onclick="cerrarSidebar()"></div>
@@ -287,7 +539,9 @@
           <div class="crm-avatar" id="crm-avatar">A</div>
           <div>
             <h2 class="crm-title" id="crm-nombre">Nombre Alumno</h2>
-            <p class="crm-subtitle" id="crm-id-fecha">ID: 000 | Formulario: 00/00/0000</p>
+            <p class="crm-subtitle" id="crm-id-fecha">
+              ID: 000 | Formulario: 00/00/0000
+            </p>
             <div style="margin-top: 5px" id="crm-badges"></div>
           </div>
         </div>
@@ -298,19 +552,31 @@
     </div>
 
     <!-- MODAL DE FORMULARIO COMPLETO (AGREGAR / EDITAR) -->
-    <div id="formModal" class="modal-overlay" onclick="cerrarModalExterno(event, 'formModal')">
+    <div
+      id="formModal"
+      class="modal-overlay"
+      onclick="cerrarModalExterno(event, 'formModal')"
+    >
       <div class="modal">
         <div class="modal-header">
           <h2 id="modal-titulo">Editar Registro</h2>
-          <button class="crm-close" onclick="cerrarModal('formModal')">×</button>
+          <button class="crm-close" onclick="cerrarModal('formModal')">
+            ×
+          </button>
         </div>
         <form id="registroForm" onsubmit="guardarFormulario(event)">
           <input type="hidden" id="f_action" value="update" />
-          
+
           <div class="form-grid">
             <div class="form-group">
-              <label>ID Registro (Solo lectura)</label>
-              <input type="text" id="f_idRegistro" disabled style="background:#eee;" placeholder="Auto-generado" />
+              <label>ID de Registro (Solo lectura)</label>
+              <input
+                type="text"
+                id="f_idRegistro"
+                disabled
+                style="background: #eee"
+                placeholder="Autogenerado"
+              />
             </div>
             <div class="form-group">
               <label>Nombre Completo</label>
@@ -327,7 +593,7 @@
             </div>
             <div class="form-group">
               <label>Teléfono</label>
-              <input type="text" id="f_telefono" />
+              <input type="tel" id="f_telefono" />
             </div>
             <div class="form-group">
               <label>Género</label>
@@ -354,17 +620,17 @@
               <input type="text" id="f_montoAPagar" />
             </div>
             <div class="form-group">
-              <label>Pagado (Sí/No/Monto)</label>
+              <label>Pagado (Sí / No / Monto)</label>
               <input type="text" id="f_pagado" />
             </div>
 
             <div class="form-group">
-              <label>Fecha Formulario</label>
-              <input type="text" id="f_fechaRegistro" placeholder="DD/MM/AAAA" />
+              <label>Fecha del Formulario</label>
+              <input type="date" id="f_fechaRegistro" />
             </div>
             <div class="form-group">
-              <label>Fecha Ingreso SERVO</label>
-              <input type="text" id="f_fechaServo" placeholder="DD/MM/AAAA" />
+              <label>Fecha de Ingreso a SERVO</label>
+              <input type="date" id="f_fechaServo" />
             </div>
             <div class="form-group">
               <label>Asesor Asignado</label>
@@ -372,34 +638,52 @@
             </div>
 
             <div class="form-group full">
-              <label>Enlace Expediente Drive</label>
-              <input type="url" id="f_urlExpediente" placeholder="https://drive.google.com/..." />
+              <label>Enlace al Expediente en Drive</label>
+              <input
+                type="url"
+                id="f_urlExpediente"
+                placeholder="https://drive.google.com/..."
+              />
             </div>
           </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-drive" onclick="cerrarModal('formModal')">Cancelar</button>
-            <button type="submit" id="btn-submit-form" class="btn btn-save" style="width:auto;">Guardar Registro</button>
+            <button
+              type="button"
+              class="btn btn-drive"
+              onclick="cerrarModal('formModal')"
+            >
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              id="btn-submit-form"
+              class="btn btn-save"
+              style="width: auto"
+            >
+              Guardar Registro
+            </button>
           </div>
         </form>
       </div>
     </div>
-
     <script>
-      // ⚠️ REEMPLAZA ESTO CON LA URL DE TU SCRIPT PUBLICADO COMO WEB APP
-      const API_URL = "https://script.google.com/macros/s/AKfycbxknCbQUxSjbsw9rym-n0ng2cWa_xqb9Ze3XF5rflNSKDzRvTdyrAcjn7skzjC8AS5vIg/exec";
+
+      const API_URL =
+        "https://script.google.com/macros/s/AKfycbxknCbQUxSjbsw9rym-n0ng2cWa_xqb9Ze3XF5rflNSKDzRvTdyrAcjn7skzjC8AS5vIg/exec";
 
       let dataGlobal = [];
       let datosFiltrados = [];
       let currentSortColumn = "fechaRegistro";
       let currentSortAsc = false;
-      
+
       // Variables para paginación (Carga en Bloques)
       let itemsPorPagina = 50;
       let paginaActual = 1;
 
       function cargarDatos() {
-        document.getElementById("contador").innerHTML = `<span class="badge badge-yellow">Descargando...</span>`;
+        document.getElementById("contador").innerHTML =
+          `<span class="badge badge-yellow">Descargando...</span>`;
         fetch(API_URL)
           .then((res) => res.json())
           .then((json) => {
@@ -410,12 +694,14 @@
             }
           })
           .catch(() => {
-            document.getElementById("tabla-body").innerHTML = `<tr><td colspan="8" style="text-align:center; color:red; padding:20px;">Error de conexión con Google Sheets.</td></tr>`;
+            document.getElementById("tabla-body").innerHTML =
+              `<tr><td colspan="8" style="text-align:center; color:red; padding:20px;">Error de conexión con Google Sheets.</td></tr>`;
           });
       }
 
       function generarFiltrosDinamicos(datos) {
-        const cursos = new Set(), estatus = new Set();
+        const cursos = new Set(),
+          estatus = new Set();
         datos.forEach((a) => {
           if (a.curso) cursos.add(a.curso.trim());
           if (a.status) estatus.add(a.status.trim());
@@ -427,27 +713,41 @@
       function llenarSelect(id, setDatos, textoDefault) {
         const select = document.getElementById(id);
         select.innerHTML = `<option value="ALL">${textoDefault}</option>`;
-        Array.from(setDatos).sort().forEach((item) => {
-          if (item) select.innerHTML += `<option value="${item}">${item}</option>`;
-        });
+        Array.from(setDatos)
+          .sort()
+          .forEach((item) => {
+            if (item)
+              select.innerHTML += `<option value="${item}">${item}</option>`;
+          });
       }
 
       function normalizar(texto) {
         if (!texto) return "";
-        return String(texto).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        return String(texto)
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .toLowerCase();
       }
 
       function procesarFiltros() {
-        const txtBuscar = normalizar(document.getElementById("searchInput").value);
-        const terminosBusqueda = txtBuscar.split(" ").filter((t) => t.length > 0);
+        const txtBuscar = normalizar(
+          document.getElementById("searchInput").value,
+        );
+        const terminosBusqueda = txtBuscar
+          .split(" ")
+          .filter((t) => t.length > 0);
         const fCurso = document.getElementById("filterCurso").value;
         const fStatus = document.getElementById("filterStatus").value;
 
         datosFiltrados = dataGlobal.filter((a) => {
-          const pasaCurso = fCurso === "ALL" || String(a.curso).trim() === fCurso;
-          const pasaStatus = fStatus === "ALL" || String(a.status).trim() === fStatus;
+          const pasaCurso =
+            fCurso === "ALL" || String(a.curso).trim() === fCurso;
+          const pasaStatus =
+            fStatus === "ALL" || String(a.status).trim() === fStatus;
           const cadenaTotal = normalizar(Object.values(a).join(" "));
-          const pasaTexto = terminosBusqueda.every((termino) => cadenaTotal.includes(termino));
+          const pasaTexto = terminosBusqueda.every((termino) =>
+            cadenaTotal.includes(termino),
+          );
           return pasaCurso && pasaStatus && pasaTexto;
         });
 
@@ -460,7 +760,7 @@
         });
 
         actualizarMetricas(datosFiltrados);
-        
+
         // Reiniciar la paginación al filtrar
         paginaActual = 1;
         document.getElementById("tabla-body").innerHTML = ""; // Limpiar tabla
@@ -470,14 +770,21 @@
 
       function actualizarMetricas(datos) {
         document.getElementById("metric-total").innerText = datos.length;
-        document.getElementById("metric-pendientes").innerText = datos.filter(a => !a.urlExpediente || String(a.urlExpediente).trim() === "").length;
-        document.getElementById("metric-nuevos").innerText = datos.filter(a => String(a.status).toLowerCase().includes("nuevo")).length;
-        document.getElementById("metric-reins").innerText = datos.filter(a => String(a.status).toLowerCase().includes("reinscripci")).length;
+        document.getElementById("metric-pendientes").innerText = datos.filter(
+          (a) => !a.urlExpediente || String(a.urlExpediente).trim() === "",
+        ).length;
+        document.getElementById("metric-nuevos").innerText = datos.filter((a) =>
+          String(a.status).toLowerCase().includes("nuevo"),
+        ).length;
+        document.getElementById("metric-reins").innerText = datos.filter((a) =>
+          String(a.status).toLowerCase().includes("reinscripci"),
+        ).length;
       }
 
       function renderizarBloqueTabla() {
         const tbody = document.getElementById("tabla-body");
-        document.getElementById("contador").innerHTML = `<span class="badge badge-green">En línea</span>`;
+        document.getElementById("contador").innerHTML =
+          `<span class="badge badge-green">En línea</span>`;
 
         if (datosFiltrados.length === 0) {
           tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding:30px; color:#666;">No se encontraron registros.</td></tr>`;
@@ -491,11 +798,15 @@
 
         bloqueDatos.forEach((alumno) => {
           let matStr = alumno.matricula ? String(alumno.matricula).trim() : "";
-          let semaforoMatricula = matStr && normalizar(matStr) !== "no matriculado"
-            ? `<span class="badge badge-green">${matStr}</span>`
-            : `<span class="badge badge-yellow">Pendiente</span>`;
-          let claseFila = alumno.urlExpediente && String(alumno.urlExpediente).trim() !== "" ? "" : "row-missing-files";
-          
+          let semaforoMatricula =
+            matStr && normalizar(matStr) !== "no matriculado"
+              ? `<span class="badge badge-green">${matStr}</span>`
+              : `<span class="badge badge-yellow">Pendiente</span>`;
+          let claseFila =
+            alumno.urlExpediente && String(alumno.urlExpediente).trim() !== ""
+              ? ""
+              : "row-missing-files";
+
           let btnPerfil = `<button class="btn btn-view" onclick="abrirPerfilCRM('${alumno.idRegistro}')">Perfil</button>`;
           let btnEdit = `<button class="btn btn-view" style="background:var(--upm-gold); color:black;" onclick="abrirModalFormulario('editar', '${alumno.idRegistro}')">Editar</button>`;
 
@@ -531,28 +842,43 @@
 
       function cambiarOrden(columna) {
         if (currentSortColumn === columna) currentSortAsc = !currentSortAsc;
-        else { currentSortColumn = columna; currentSortAsc = true; }
+        else {
+          currentSortColumn = columna;
+          currentSortAsc = true;
+        }
         procesarFiltros();
       }
 
       function actualizarIconosOrden() {
-        document.querySelectorAll(".sort-icon").forEach((el) => (el.innerText = ""));
-        const iconoActivo = document.getElementById(`sort-${currentSortColumn}`);
+        document
+          .querySelectorAll(".sort-icon")
+          .forEach((el) => (el.innerText = ""));
+        const iconoActivo = document.getElementById(
+          `sort-${currentSortColumn}`,
+        );
         if (iconoActivo) iconoActivo.innerText = currentSortAsc ? "▲" : "▼";
       }
 
       function abrirPerfilCRM(idRegistro) {
-        const alumno = dataGlobal.find((a) => String(a.idRegistro) === String(idRegistro));
+        const alumno = dataGlobal.find(
+          (a) => String(a.idRegistro) === String(idRegistro),
+        );
         if (!alumno) return;
-        const inicial = alumno.nombreCompleto ? alumno.nombreCompleto.charAt(0).toUpperCase() : "A";
+        const inicial = alumno.nombreCompleto
+          ? alumno.nombreCompleto.charAt(0).toUpperCase()
+          : "A";
         document.getElementById("crm-avatar").innerText = inicial;
-        document.getElementById("crm-nombre").innerText = alumno.nombreCompleto || "Sin Nombre";
-        document.getElementById("crm-id-fecha").innerText = `ID: ${alumno.idRegistro} | Formulario: ${alumno.fechaRegistro || '-'}`;
+        document.getElementById("crm-nombre").innerText =
+          alumno.nombreCompleto || "Sin Nombre";
+        document.getElementById("crm-id-fecha").innerText =
+          `ID: ${alumno.idRegistro} | Formulario: ${alumno.fechaRegistro || "-"}`;
         let badgesHTML = `<span class="badge badge-blue">${alumno.status || "Sin estatus"}</span> `;
         let mat = normalizar(alumno.matricula);
-        if (mat && mat !== "no matriculado") badgesHTML += `<span class="badge badge-gray">Mat: ${alumno.matricula}</span>`;
+        if (mat && mat !== "no matriculado")
+          badgesHTML += `<span class="badge badge-gray">Mat: ${alumno.matricula}</span>`;
         document.getElementById("crm-badges").innerHTML = badgesHTML;
-        const val = (v) => v ? v : '<span style="color:#bbb; font-weight:normal;">N/A</span>';
+        const val = (v) =>
+          v ? v : '<span style="color:#bbb; font-weight:normal;">N/A</span>';
 
         let htmlBody = `
           <div class="crm-section">
@@ -581,20 +907,26 @@
         `;
         document.getElementById("crm-content").innerHTML = htmlBody;
 
-        let btnDrive = alumno.urlExpediente && String(alumno.urlExpediente).trim() !== ""
+        let btnDrive =
+          alumno.urlExpediente && String(alumno.urlExpediente).trim() !== ""
             ? `<a href="${alumno.urlExpediente}" target="_blank" class="btn btn-drive" style="background:#0f9d58; color:white; border:none;">Expediente Drive</a>`
             : `<button class="btn btn-missing" disabled>Expediente Faltante</button>`;
 
         let btnEdit = `<button class="btn btn-view" style="background:var(--upm-gold); color:black;" onclick="abrirModalFormulario('editar', '${alumno.idRegistro}')">Editar Todo</button>`;
 
-        document.getElementById("crm-footer").innerHTML = `${btnDrive} ${btnEdit}`;
+        document.getElementById("crm-footer").innerHTML =
+          `${btnDrive} ${btnEdit}`;
         document.getElementById("crmOverlay").style.display = "block";
-        setTimeout(() => { document.getElementById("crmSidebar").classList.add("active"); }, 10);
+        setTimeout(() => {
+          document.getElementById("crmSidebar").classList.add("active");
+        }, 10);
       }
 
       function cerrarSidebar() {
         document.getElementById("crmSidebar").classList.remove("active");
-        setTimeout(() => { document.getElementById("crmOverlay").style.display = "none"; }, 300);
+        setTimeout(() => {
+          document.getElementById("crmOverlay").style.display = "none";
+        }, 300);
       }
 
       /* Función que maneja tanto Agregar (nuevo) como Editar */
@@ -602,36 +934,53 @@
         cerrarSidebar();
         document.getElementById("registroForm").reset();
 
-        if (modo === 'nuevo') {
-          document.getElementById("modal-titulo").innerText = "Agregar Nuevo Registro";
+        if (modo === "nuevo") {
+          document.getElementById("modal-titulo").innerText =
+            "Agregar Nuevo Registro";
           document.getElementById("f_action").value = "add";
           document.getElementById("f_idRegistro").value = "";
           // Opción extra para status
           let selStatus = document.getElementById("f_status");
           selStatus.value = "Nuevo Ingreso";
-        } else if (modo === 'editar') {
-          document.getElementById("modal-titulo").innerText = "Editar Registro Completo";
+        } else if (modo === "editar") {
+          document.getElementById("modal-titulo").innerText =
+            "Editar Registro Completo";
           document.getElementById("f_action").value = "update";
-          
-          const alumno = dataGlobal.find((a) => String(a.idRegistro) === String(idRegistro));
+
+          const alumno = dataGlobal.find(
+            (a) => String(a.idRegistro) === String(idRegistro),
+          );
           if (!alumno) return;
 
-          document.getElementById("f_idRegistro").value = alumno.idRegistro || "";
-          document.getElementById("f_nombreCompleto").value = alumno.nombreCompleto || "";
-          document.getElementById("f_matricula").value = normalizar(alumno.matricula) === "no matriculado" ? "" : alumno.matricula;
+          document.getElementById("f_idRegistro").value =
+            alumno.idRegistro || "";
+          document.getElementById("f_nombreCompleto").value =
+            alumno.nombreCompleto || "";
+          document.getElementById("f_matricula").value =
+            normalizar(alumno.matricula) === "no matriculado"
+              ? ""
+              : alumno.matricula;
           document.getElementById("f_correo").value = alumno.correo || "";
           document.getElementById("f_telefono").value = alumno.telefono || "";
           document.getElementById("f_genero").value = alumno.genero || "";
           document.getElementById("f_curso").value = alumno.curso || "";
-          document.getElementById("f_montoAPagar").value = alumno.montoAPagar || "";
+          document.getElementById("f_montoAPagar").value =
+            alumno.montoAPagar || "";
           document.getElementById("f_pagado").value = alumno.pagado || "";
-          document.getElementById("f_fechaRegistro").value = alumno.fechaRegistro || "";
-          document.getElementById("f_fechaServo").value = alumno.fechaServo || "";
+          document.getElementById("f_fechaRegistro").value =
+            alumno.fechaRegistro || "";
+          document.getElementById("f_fechaServo").value =
+            alumno.fechaServo || "";
           document.getElementById("f_asesor").value = alumno.asesor || "";
-          document.getElementById("f_urlExpediente").value = alumno.urlExpediente || "";
+          document.getElementById("f_urlExpediente").value =
+            alumno.urlExpediente || "";
 
           let selStatus = document.getElementById("f_status");
-          if (!Array.from(selStatus.options).some((opt) => opt.value === alumno.status)) {
+          if (
+            !Array.from(selStatus.options).some(
+              (opt) => opt.value === alumno.status,
+            )
+          ) {
             selStatus.innerHTML += `<option value="${alumno.status}">${alumno.status}</option>`;
           }
           selStatus.value = alumno.status;
@@ -639,19 +988,25 @@
         document.getElementById("formModal").style.display = "flex";
       }
 
-      function cerrarModal(modalId) { document.getElementById(modalId).style.display = "none"; }
-      function cerrarModalExterno(event, modalId) { if (event.target.id === modalId) cerrarModal(modalId); }
+      function cerrarModal(modalId) {
+        document.getElementById(modalId).style.display = "none";
+      }
+      function cerrarModalExterno(event, modalId) {
+        if (event.target.id === modalId) cerrarModal(modalId);
+      }
 
       function guardarFormulario(e) {
         e.preventDefault();
         const btn = document.getElementById("btn-submit-form");
-        btn.innerText = "Guardando..."; btn.disabled = true;
+        btn.innerText = "Guardando...";
+        btn.disabled = true;
 
         const payload = {
           action: document.getElementById("f_action").value,
           idRegistro: document.getElementById("f_idRegistro").value,
           nombreCompleto: document.getElementById("f_nombreCompleto").value,
-          matricula: document.getElementById("f_matricula").value || "No Matriculado",
+          matricula:
+            document.getElementById("f_matricula").value || "No Matriculado",
           correo: document.getElementById("f_correo").value,
           telefono: document.getElementById("f_telefono").value,
           genero: document.getElementById("f_genero").value,
@@ -662,7 +1017,7 @@
           fechaRegistro: document.getElementById("f_fechaRegistro").value,
           fechaServo: document.getElementById("f_fechaServo").value,
           asesor: document.getElementById("f_asesor").value,
-          urlExpediente: document.getElementById("f_urlExpediente").value
+          urlExpediente: document.getElementById("f_urlExpediente").value,
         };
 
         fetch(API_URL, {
