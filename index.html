@@ -546,7 +546,7 @@
     <script>
       const ENV_CONFIG = {
         SCRIPT_URL:
-          "https://script.google.com/macros/s/AKfycbzUZpJjLjn2HqL42HIN3TT6m5RI4jRRJdOg9aOt8q-HXMUYMnh8vyELESDV9HfDO8NJ/exec",
+          "https://script.google.com/macros/s/AKfycbyj05n8XY4OG5bKP0GYaTtuGNTgvYKgp3FfORuUIw5inh8ytRKKmhy5fG6Ov2V75n96Ag/exec",
       };
 
       const catalogoCursos = {
@@ -1074,6 +1074,7 @@
           document.getElementById("loading-overlay").style.display = "flex";
 
           const formData = {
+            action: "add",
             status: document.getElementById("status").value,
             matricula: document.getElementById("matricula").value,
             firstname: document.getElementById("firstname").value,
