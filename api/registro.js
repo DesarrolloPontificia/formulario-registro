@@ -18,10 +18,10 @@ export default async function handler(req, res) {
     medio
   } = req.body;
 
-  const AC_URL = process.env.ACTIVECAMPAIGN_URL; // Ej: https://tu-cuenta.activehosted.com
-  const AC_KEY = process.env.ACTIVECAMPAIGN_KEY; // Tu API Key
-  const PIPELINE_ID = process.env.AC_PIPELINE_ID; // ID de 'SEMESTRALES 2027-1'
-  const STAGE_ID = process.env.AC_STAGE_ID;       // ID de 'LEAD'
+  const AC_URL = process.env.ACTIVECAMPAIGN_URL; 
+  const AC_KEY = process.env.ACTIVECAMPAIGN_KEY;
+  const PIPELINE_ID = process.env.AC_PIPELINE_ID;
+  const STAGE_ID = process.env.AC_STAGE_ID;
 
   const headers = {
     'Api-Token': AC_KEY,
